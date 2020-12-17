@@ -3,14 +3,17 @@ import 'dart:convert';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:onlineShopUIKit/animasions/FadeAnimation.dart';
+import 'package:onlineShopUIKit/helper/theme.dart';
 import 'package:onlineShopUIKit/modal/SubCategory.dart';
 import 'package:onlineShopUIKit/network_utils/api.dart';
+import 'package:onlineShopUIKit/provider/productsProvider.dart';
 import 'package:onlineShopUIKit/screens/searchScreen/searchScreen.dart';
 import 'package:onlineShopUIKit/helper/helper.dart';
 import 'package:onlineShopUIKit/widget/listItems.dart';
 import 'package:onlineShopUIKit/screens/productsByCategory/productsByCategoy.dart';
 import 'package:onlineShopUIKit/widget/userSelecation.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 class SubCategroryScreen extends StatefulWidget {
   @override
@@ -45,83 +48,94 @@ class _SubCategroryScreenState extends State<SubCategroryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
-        slivers: <Widget>[
-          SliverAppBar(
-            elevation: 0,
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-            expandedHeight: 126,
-            floating: false,
-            pinned: true,
-            actions: [
-              IconButton(
-                  icon: Icon(EvaIcons.search, color: Colors.black),
-                  onPressed: () {
-                    Helper().goToPage(context, SearchScreen());
-                  }),
-            ],
-            leading: IconButton(
-              icon: Icon(
-                EvaIcons.arrowIosBack,
-                color: Colors.black,
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            flexibleSpace: FlexibleSpaceBar(
-              background: FadeAnimation(
-                0.5,
-                SafeArea(
-                  child: Container(
-                    margin: EdgeInsets.only(top: 60),
-                    child: FadeAnimation(
-                      0.6,
-                      UserSelecationFlow(
-                        childText: "CLOTHING".toUpperCase(),
-                        parent: "WOMAN".toUpperCase(),
-                        rightButton: null,
+    return Consumer<ProductsProvider>(
+      builder: (context, loginStateProvider, child) {
+        return Consumer<ThemeNotifier>(
+            builder: (context, ThemeNotifier notifier, child) {
+          return Scaffold(
+            body: CustomScrollView(
+              physics: const BouncingScrollPhysics(),
+              slivers: <Widget>[
+                SliverAppBar(
+                  elevation: 0,
+                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                  expandedHeight: 126,
+                  floating: false,
+                  pinned: true,
+                  actions: [
+                    IconButton(
+                        icon: Icon(EvaIcons.search,
+                            color: notifier.darkTheme
+                                ? Colors.white
+                                : Colors.black),
+                        onPressed: () {
+                          Helper().goToPage(context, SearchScreen());
+                        }),
+                  ],
+                  leading: IconButton(
+                    icon: Icon(
+                      EvaIcons.arrowIosBack,
+                      color: notifier.darkTheme ? Colors.white : Colors.black,
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  flexibleSpace: FlexibleSpaceBar(
+                    background: FadeAnimation(
+                      0.5,
+                      SafeArea(
+                        child: Container(
+                          margin: EdgeInsets.only(top: 60),
+                          child: FadeAnimation(
+                            0.6,
+                            UserSelecationFlow(
+                              childText: "CLOTHING".toUpperCase(),
+                              parent: "WOMAN".toUpperCase(),
+                              rightButton: null,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ),
-          ),
-          subCategoryLoading
-              ? SliverToBoxAdapter(
-                  child: FadeAnimation(
-                    0.5,
-                    Center(
-                      child: Container(
-                          margin: EdgeInsets.only(top: 16),
-                          child: CircularProgressIndicator()),
-                    ),
-                  ),
-                )
-              : SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                      SubCategoryElement subCategoryElement =
-                          subCategory.subCategory[index];
-                      return FadeAnimation(
-                        0.5,
-                        SubCategoryListItem(
-                          function: () {
-                            Helper().goToPage(context, ProductsByCategory());
-                          },
-                          imageUrl: subCategoryElement.imageUrl,
-                          text: subCategoryElement.text,
+                subCategoryLoading
+                    ? SliverToBoxAdapter(
+                        child: FadeAnimation(
+                          0.5,
+                          Center(
+                            child: Container(
+                                margin: EdgeInsets.only(top: 16),
+                                child: CircularProgressIndicator()),
+                          ),
                         ),
-                      );
-                    },
-                    childCount: subCategory.subCategory.length,
-                  ),
-                ),
-        ],
-      ),
+                      )
+                    : SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (BuildContext context, int index) {
+                            SubCategoryElement subCategoryElement =
+                                subCategory.subCategory[index];
+                            return FadeAnimation(
+                              0.5,
+                              SubCategoryListItem(
+                                function: () {
+                                  Helper()
+                                      .goToPage(context, ProductsByCategory());
+                                },
+                                imageUrl: subCategoryElement.imageUrl,
+                                text: subCategoryElement.text,
+                              ),
+                            );
+                          },
+                          childCount: subCategory.subCategory.length,
+                        ),
+                      ),
+              ],
+            ),
+          );
+        });
+      },
     );
   }
 }

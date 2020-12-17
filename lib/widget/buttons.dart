@@ -127,7 +127,7 @@ class GoBackButton extends StatelessWidget {
   final Color color;
   final Function function;
 
-  const GoBackButton({Key key, @required this.color, @required this.function})
+  const GoBackButton({Key key, this.color, @required this.function})
       : super(key: key);
   @override
   Widget build(BuildContext context) {

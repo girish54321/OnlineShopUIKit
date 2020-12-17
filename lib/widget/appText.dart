@@ -1,16 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html/html_parser.dart';
-import 'package:flutter_html/style.dart';
 
 class AppTextH1 extends StatelessWidget {
   final String text;
   final Color color;
   final TextAlign textAlign;
 
-  const AppTextH1(
-      {Key key, @required this.text, @required this.color, this.textAlign})
+  const AppTextH1({Key key, @required this.text, this.color, this.textAlign})
       : super(key: key);
   @override
   Widget build(BuildContext context) {

@@ -14,14 +14,16 @@ class SearchBox extends StatelessWidget {
           color: Color(0xFFefefef), borderRadius: BorderRadius.circular(24.7)),
       child: Center(
         child: TextField(
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
           decoration: InputDecoration(
               suffixIcon: Icon(
                 EvaIcons.search,
+                color: Colors.black
               ),
               border: InputBorder.none,
               hintText: 'Search',
-              hintStyle: TextStyle(fontWeight: FontWeight.bold)),
+              hintStyle:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
         ),
       ),
     );

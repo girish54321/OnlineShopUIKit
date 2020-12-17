@@ -97,7 +97,6 @@ class _FindShopScreenState extends State<FindShopScreen>
                             horizontal: 18, vertical: 28),
                         child: AppTextH1(
                           text: "Find all appName\nstors here",
-                          color: Colors.black,
                         ),
                       )),
                 ),
@@ -149,7 +148,6 @@ class _FindShopScreenState extends State<FindShopScreen>
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 18, vertical: 16),
                 child: CategoryText(
-                  color: Colors.black,
                   text: "All Stores",
                 ),
               ),

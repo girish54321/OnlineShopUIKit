@@ -2,6 +2,7 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:onlineShopUIKit/animasions/FadeAnimation.dart';
 import 'package:onlineShopUIKit/animasions/rightToLeft.dart';
+import 'package:onlineShopUIKit/helper/theme.dart';
 import 'package:onlineShopUIKit/modal/products.dart';
 import 'package:onlineShopUIKit/provider/productsProvider.dart';
 import 'package:onlineShopUIKit/widget/appText.dart';
@@ -106,7 +107,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                       child: Center(
                         child: AppTextH1(
                           text: "Success!",
-                          color: Colors.black,
                         ),
                       ),
                     ),
@@ -157,186 +157,194 @@ class _ProductDetailsState extends State<ProductDetails> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
-    var product;
-    return Scaffold(
-      body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
-        slivers: <Widget>[
-          SliverAppBar(
-            expandedHeight: size.height * 0.7,
-            floating: false,
-            pinned: false,
-            leading: IconButton(
-              icon: Icon(
-                EvaIcons.arrowIosBack,
-                color: Colors.black,
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            flexibleSpace: FlexibleSpaceBar(
-                background: ProductImage(
-              images: widget.product.images,
-              goToImageView: goToImageView2,
-            )),
-          ),
-          SliverToBoxAdapter(
-              child: FadeAnimation(
-            0.5,
-            Container(
-              margin: EdgeInsets.only(
-                top: 26,
-                left: 16,
-                right: 16,
-              ),
-              child: CategoryText(
-                text: Helper().moneyFormat(widget.product.price.toString()),
-                color: Colors.black,
-              ),
-            ),
-          )),
-          SliverToBoxAdapter(
-              child: FadeAnimation(
-            0.5,
-            Container(
-              margin: EdgeInsets.only(top: 18, left: 16, right: 16, bottom: 1),
-              child: Text(
-                widget.product.name,
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 26,
-                ),
-              ),
-            ),
-          )),
-          SliverToBoxAdapter(
-            child: FadeAnimation(
-                0.5,
-                ColorsFiltter(
-                  title: null,
-                  selectedcolorIds: selectedcolorIds,
-                  colorsList: colorsList,
-                  selecteColorId: selecteColorId,
-                  smallView: true,
-                )),
-          ),
-          SliverToBoxAdapter(
-            child: FadeAnimation(
-              0.5,
-              SizeFlitter(
-                selectedSizeList: selectedSizeList,
-                selecteSize: selecteSize,
-                sizeList: sizeList,
-                title: null,
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-              child: FadeAnimation(
-                  0.5,
-                  Container(
-                    margin: EdgeInsets.only(top: 22, left: 16, right: 16),
-                    child: AppTextP1(
-                      text: "Description",
-                      fontWeight: FontWeight.bold,
+    return Consumer<ProductsProvider>(
+      builder: (context, loginStateProvider, child) {
+        return Consumer<ThemeNotifier>(
+            builder: (context, ThemeNotifier notifier, child) {
+          return Scaffold(
+            body: CustomScrollView(
+              physics: const BouncingScrollPhysics(),
+              slivers: <Widget>[
+                SliverAppBar(
+                  expandedHeight: size.height * 0.7,
+                  floating: false,
+                  pinned: false,
+                  leading: IconButton(
+                    icon: Icon(
+                      EvaIcons.arrowIosBack,
+                      color: notifier.darkTheme ? Colors.white : Colors.black,
                     ),
-                  ))),
-          SliverToBoxAdapter(
-              child: FadeAnimation(
-                  0.5,
-                  Container(
-                    margin: EdgeInsets.all(
-                      16,
-                    ),
-                    child: HtmlText(text: widget.product.description),
-                  ))),
-          SliverToBoxAdapter(
-            child: FadeAnimation(
-              1,
-              Container(
-                margin: EdgeInsets.only(top: 18, left: 16, right: 16),
-                child: BlackButton(
-                  function: () {
-                    _showMyDialog();
-                  },
-                  buttonText: "ADD TO CART",
-                ),
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 22,
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: FadeAnimation(
-              1,
-              Container(
-                margin:
-                    EdgeInsets.only(top: 8, left: 16, right: 16, bottom: 18),
-                child: AppButton(
-                    color: Colors.white,
-                    function: () {},
-                    child: Center(
-                      child: Text(
-                        "ADD TO WISHLIST",
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    )),
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-              child: FadeAnimation(
-            0.5,
-            Divider(),
-          )),
-          SliverToBoxAdapter(
-              child: FadeAnimation(
-            0.5,
-            SeeAppTitle(
-              title: "You might all so like",
-              function: null,
-            ),
-          )),
-          SliverToBoxAdapter(
-            child: Consumer<ProductsProvider>(
-              builder: (context, productsProvider, child) {
-                return Container(
-                  height: 256,
-                  child: ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: productsProvider.products.products.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      Product product =
-                          productsProvider.products.products[index];
-                      return RightToLeft(
-                          child: ProductItem(
-                        function: () {
-                          Helper().goToPage(
-                              context,
-                              ProductDetails(
-                                product: product,
-                              ));
-                        },
-                        imageUrl: product.image,
-                        name: product.name,
-                        price: Helper().moneyFormat(product.price.toString()),
-                      ));
+                    onPressed: () {
+                      Navigator.pop(context);
                     },
                   ),
-                );
-              },
+                  flexibleSpace: FlexibleSpaceBar(
+                      background: ProductImage(
+                    images: widget.product.images,
+                    goToImageView: goToImageView2,
+                  )),
+                ),
+                SliverToBoxAdapter(
+                    child: FadeAnimation(
+                  0.5,
+                  Container(
+                    margin: EdgeInsets.only(
+                      top: 26,
+                      left: 16,
+                      right: 16,
+                    ),
+                    child: CategoryText(
+                      text:
+                          Helper().moneyFormat(widget.product.price.toString()),
+                    ),
+                  ),
+                )),
+                SliverToBoxAdapter(
+                    child: FadeAnimation(
+                  0.5,
+                  Container(
+                    margin: EdgeInsets.only(
+                        top: 18, left: 16, right: 16, bottom: 1),
+                    child: Text(
+                      widget.product.name,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 26,
+                      ),
+                    ),
+                  ),
+                )),
+                SliverToBoxAdapter(
+                  child: FadeAnimation(
+                      0.5,
+                      ColorsFiltter(
+                        title: null,
+                        selectedcolorIds: selectedcolorIds,
+                        colorsList: colorsList,
+                        selecteColorId: selecteColorId,
+                        smallView: true,
+                      )),
+                ),
+                SliverToBoxAdapter(
+                  child: FadeAnimation(
+                    0.5,
+                    SizeFlitter(
+                      selectedSizeList: selectedSizeList,
+                      selecteSize: selecteSize,
+                      sizeList: sizeList,
+                      title: null,
+                    ),
+                  ),
+                ),
+                SliverToBoxAdapter(
+                    child: FadeAnimation(
+                        0.5,
+                        Container(
+                          margin: EdgeInsets.only(top: 22, left: 16, right: 16),
+                          child: AppTextP1(
+                            text: "Description",
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ))),
+                SliverToBoxAdapter(
+                    child: FadeAnimation(
+                        0.5,
+                        Container(
+                          margin: EdgeInsets.all(
+                            16,
+                          ),
+                          child: HtmlText(text: widget.product.description),
+                        ))),
+                SliverToBoxAdapter(
+                  child: FadeAnimation(
+                    1,
+                    Container(
+                      margin: EdgeInsets.only(top: 18, left: 16, right: 16),
+                      child: BlackButton(
+                        function: () {
+                          _showMyDialog();
+                        },
+                        buttonText: "ADD TO CART",
+                      ),
+                    ),
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: 22,
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: FadeAnimation(
+                    1,
+                    Container(
+                      margin: EdgeInsets.only(
+                          top: 8, left: 16, right: 16, bottom: 18),
+                      child: AppButton(
+                          color: Colors.white,
+                          function: () {},
+                          child: Center(
+                            child: Text(
+                              "ADD TO WISHLIST",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          )),
+                    ),
+                  ),
+                ),
+                SliverToBoxAdapter(
+                    child: FadeAnimation(
+                  0.5,
+                  Divider(),
+                )),
+                SliverToBoxAdapter(
+                    child: FadeAnimation(
+                  0.5,
+                  SeeAppTitle(
+                    title: "You might all so like",
+                    function: null,
+                  ),
+                )),
+                SliverToBoxAdapter(
+                  child: Consumer<ProductsProvider>(
+                    builder: (context, productsProvider, child) {
+                      return Container(
+                        height: 256,
+                        child: ListView.builder(
+                          physics: const BouncingScrollPhysics(),
+                          scrollDirection: Axis.horizontal,
+                          itemCount: productsProvider.products.products.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            Product product =
+                                productsProvider.products.products[index];
+                            return RightToLeft(
+                                child: ProductItem(
+                              function: () {
+                                Helper().goToPage(
+                                    context,
+                                    ProductDetails(
+                                      product: product,
+                                    ));
+                              },
+                              imageUrl: product.image,
+                              name: product.name,
+                              price: Helper()
+                                  .moneyFormat(product.price.toString()),
+                            ));
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
+          );
+        });
+      },
     );
   }
 }

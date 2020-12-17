@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:onlineShopUIKit/animasions/FadeAnimation.dart';
 import 'package:onlineShopUIKit/helper/helper.dart';
+import 'package:onlineShopUIKit/helper/theme.dart';
 import 'package:onlineShopUIKit/modal/products.dart';
 import 'package:onlineShopUIKit/screens/orderScrees/orderSuccessScreen.dart';
 import 'package:onlineShopUIKit/screens/productDetails/productDetails.dart';
@@ -8,6 +9,7 @@ import 'package:onlineShopUIKit/widget/appText.dart';
 import 'package:onlineShopUIKit/widget/floatingSerachButton.dart';
 import 'package:onlineShopUIKit/widget/header.dart';
 import 'package:onlineShopUIKit/widget/listItems.dart';
+import 'package:provider/provider.dart';
 
 class SummearyScreen extends StatefulWidget {
   @override
@@ -87,111 +89,115 @@ class _SummearyScreenState extends State<SummearyScreen>
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
-    return Scaffold(
-      body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
-        slivers: <Widget>[
-          SliverToBoxAdapter(
-            child: FadeAnimation(
-              0.5,
-              Column(
-                children: [
-                  SafeArea(
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                        top: 8.0,
-                      ),
-                      child: AppHearder(
-                        hideBackButton: false,
-                        buttonText: "CHECKOUT",
-                        leftButtonColor: Colors.black,
-                        rightAction: [],
-                        leftButton: true,
-                      ),
-                    ),
-                  ),
-                  Divider(),
-                ],
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 21,
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: FadeAnimation(
+    return Consumer<ThemeNotifier>(
+        builder: (context, ThemeNotifier notifier, child) {
+      return Scaffold(
+        body: CustomScrollView(
+          physics: const BouncingScrollPhysics(),
+          slivers: <Widget>[
+            SliverToBoxAdapter(
+              child: FadeAnimation(
                 0.5,
                 Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: AddressItem(),
+                    SafeArea(
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          top: 8.0,
+                        ),
+                        child: AppHearder(
+                          hideBackButton: false,
+                          buttonText: "CHECKOUT",
+                          leftButtonColor:
+                              notifier.darkTheme ? Colors.white : Colors.black,
+                          rightAction: [],
+                          leftButton: true,
+                        ),
+                      ),
                     ),
-                    SizedBox(
-                      height: 21,
-                    ),
-                    Divider()
+                    Divider(),
                   ],
-                )),
-          ),
-          SliverToBoxAdapter(
-              child: FadeAnimation(
-            0.5,
-            MasterCardView(),
-          )),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 16,
-            ),
-          ),
-          SliverList(
-            delegate:
-                SliverChildBuilderDelegate((BuildContext context, int index) {
-              Product productItem = products.products[index];
-              return Container(
-                margin: EdgeInsets.symmetric(vertical: 0.0, horizontal: 27),
-                child: FadeAnimation(
-                  0.5,
-                  CartItem(
-                    size: size,
-                    imageUrl: productItem.image,
-                    price: Helper().moneyFormat(productItem.price.toString()),
-                    title: productItem.name,
-                    function: () {
-                      Helper().goToPage(
-                          context, ProductDetails(product: productItem));
-                    },
-                  ),
                 ),
-              );
-            }, childCount: products.products.length),
-          ),
-          SliverToBoxAdapter(
-              child: FadeAnimation(
-            0.5,
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: AppTextP1(
-                fontWeight: FontWeight.bold,
-                text: "Total ₹ 735",
               ),
             ),
-          )),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 86,
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 21,
+              ),
             ),
-          ),
-        ],
-      ),
-      floatingActionButton: FlothingSearchButton(
-        buttonText: "PLACE ORDER",
-        function: () {
-          Helper().goToPage(context, OrderSuccessScreen());
-        },
-      ),
-    );
+            SliverToBoxAdapter(
+              child: FadeAnimation(
+                  0.5,
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: AddressItem(),
+                      ),
+                      SizedBox(
+                        height: 21,
+                      ),
+                      Divider()
+                    ],
+                  )),
+            ),
+            SliverToBoxAdapter(
+                child: FadeAnimation(
+              0.5,
+              MasterCardView(),
+            )),
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 16,
+              ),
+            ),
+            SliverList(
+              delegate:
+                  SliverChildBuilderDelegate((BuildContext context, int index) {
+                Product productItem = products.products[index];
+                return Container(
+                  margin: EdgeInsets.symmetric(vertical: 0.0, horizontal: 27),
+                  child: FadeAnimation(
+                    0.5,
+                    CartItem(
+                      size: size,
+                      imageUrl: productItem.image,
+                      price: Helper().moneyFormat(productItem.price.toString()),
+                      title: productItem.name,
+                      function: () {
+                        Helper().goToPage(
+                            context, ProductDetails(product: productItem));
+                      },
+                    ),
+                  ),
+                );
+              }, childCount: products.products.length),
+            ),
+            SliverToBoxAdapter(
+                child: FadeAnimation(
+              0.5,
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: AppTextP1(
+                  fontWeight: FontWeight.bold,
+                  text: "Total ₹ 735",
+                ),
+              ),
+            )),
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 86,
+              ),
+            ),
+          ],
+        ),
+        floatingActionButton: FlothingSearchButton(
+          buttonText: "PLACE ORDER",
+          function: () {
+            Helper().goToPage(context, OrderSuccessScreen());
+          },
+        ),
+      );
+    });
   }
 }

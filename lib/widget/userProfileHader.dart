@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:onlineShopUIKit/helper/theme.dart';
 import 'package:onlineShopUIKit/widget/appNetworkImage.dart';
+import 'package:provider/provider.dart';
 
 import 'appText.dart';
 
@@ -77,7 +79,17 @@ class UserProfileHeader extends StatelessWidget {
             ],
           ),
         ),
-        Container(margin: EdgeInsets.only(bottom: 18), child: Divider())
+        Divider(),
+        Consumer<ThemeNotifier>(
+          builder: (context, notifier, child) => SwitchListTile(
+            title: Text("Dark Mode"),
+            onChanged: (val) {
+              notifier.toggleTheme();
+            },
+            value: notifier.darkTheme,
+          ),
+        ),
+        Container(margin: EdgeInsets.only(bottom: 18), child: Divider()),
       ],
     );
   }

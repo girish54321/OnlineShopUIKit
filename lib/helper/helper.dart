@@ -67,6 +67,7 @@ class Helper {
     return pr;
   }
 
+  // ignore: missing_return
   String moneyFormat(String price) {
     if (price.length > 2) {
       var value = price;

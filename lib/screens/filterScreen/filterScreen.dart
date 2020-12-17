@@ -1,9 +1,12 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:onlineShopUIKit/animasions/FadeAnimation.dart';
+import 'package:onlineShopUIKit/helper/theme.dart';
+import 'package:onlineShopUIKit/provider/productsProvider.dart';
 import 'package:onlineShopUIKit/widget/appText.dart';
 import 'package:onlineShopUIKit/widget/header.dart';
 import 'package:onlineShopUIKit/screens/filterScreen/filtters.dart';
+import 'package:provider/provider.dart';
 
 class FilterScreen extends StatefulWidget {
   @override
@@ -136,151 +139,163 @@ class _FilterScreenState extends State<FilterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
-        slivers: <Widget>[
-          SliverToBoxAdapter(
-            child: FadeAnimation(
-              0.5,
-              SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: AppHearder(
-                    hideBackButton: false,
-                    buttonText: "cart",
-                    leftButtonColor: Colors.black,
-                    rightAction: [
-                      Container(
-                        height: 30,
-                        margin: EdgeInsets.only(right: 16),
-                        child: Chip(
-                          backgroundColor: Theme.of(context).accentColor,
-                          deleteIcon: Icon(
-                            EvaIcons.close,
-                            color: Colors.white,
-                          ),
-                          onDeleted: () {
-                            clearAllFitter();
-                          },
-                          label: Text("clear".toUpperCase(),
-                              style: TextStyle(
-                                color: Colors.white,
-                              )),
+    return Consumer<ProductsProvider>(
+      builder: (context, loginStateProvider, child) {
+        return Consumer<ThemeNotifier>(
+            builder: (context, ThemeNotifier notifier, child) {
+          return Scaffold(
+            body: CustomScrollView(
+              physics: const BouncingScrollPhysics(),
+              slivers: <Widget>[
+                SliverToBoxAdapter(
+                  child: FadeAnimation(
+                    0.5,
+                    SafeArea(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: AppHearder(
+                          hideBackButton: false,
+                          buttonText: "cart",
+                          leftButtonColor:
+                              notifier.darkTheme ? Colors.white : Colors.black,
+                          rightAction: [
+                            Container(
+                              height: 30,
+                              margin: EdgeInsets.only(right: 16),
+                              child: Chip(
+                                backgroundColor: Theme.of(context).accentColor,
+                                deleteIcon: Icon(
+                                  EvaIcons.close,
+                                  color: Colors.white,
+                                ),
+                                onDeleted: () {
+                                  clearAllFitter();
+                                },
+                                label: Text("clear".toUpperCase(),
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    )),
+                              ),
+                            ),
+                          ],
+                          leftButton: true,
                         ),
                       ),
-                    ],
-                    leftButton: true,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: FadeAnimation(0.5, Divider()),
-          ),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 28,
-            ),
-          ),
-          SliverToBoxAdapter(
-              child: FadeAnimation(
-                  0.5,
-                  RengPicker(
-                    function: changePriceSlider,
-                    rangeValues: _currentRangeValues,
-                    title: "Price",
-                  ))),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 28,
-            ),
-          ),
-          SliverToBoxAdapter(
-              child: FadeAnimation(
-                  0.5,
-                  ColorsFiltter(
-                    title: "Color",
-                    selectedcolorIds: selectedcolorIds,
-                    colorsList: colorsList,
-                    selecteColorId: selecteColorId,
-                    smallView: false,
-                  ))),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 28,
-            ),
-          ),
-          SliverToBoxAdapter(
-              child: FadeAnimation(
-                  0.5,
-                  SizeFlitter(
-                      sizeList: sizeList,
-                      title: "Size",
-                      selecteSize: selecteSize,
-                      selectedSizeList: selectedSizeList))),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 28,
-            ),
-          ),
-          SliverToBoxAdapter(
-              child: FadeAnimation(
-                  0.5,
-                  Container(
-                    margin: EdgeInsets.only(left: 18),
-                    child: CategoryText(
-                      text: "Brands",
-                      color: Colors.black,
                     ),
-                  ))),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 12,
-            ),
-          ),
-          SliverList(
-            delegate:
-                SliverChildBuilderDelegate((BuildContext context, int index) {
-              BrandName brandName = brandList[index];
-              return Container(
-                margin: EdgeInsets.symmetric(vertical: 0.0, horizontal: 18),
-                child: FadeAnimation(
-                  0.5,
-                  Column(
-                    children: [
-                      ListTile(
-                        onTap: () {
-                          selectBrand(brandName);
-                        },
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: 0.0, horizontal: 0),
-                        title: BrandText(
-                          fontWeight: selectedbrandList.contains(brandName.id)
-                              ? FontWeight.bold
-                              : FontWeight.normal,
-                          color: selectedbrandList.contains(brandName.id)
-                              ? Theme.of(context).accentColor
-                              : Colors.grey,
-                          text: brandName.name,
-                        ),
-                        trailing: selectedbrandList.contains(brandName.id)
-                            ? Icon(
-                                EvaIcons.checkmark,
-                                color: Theme.of(context).accentColor,
-                              )
-                            : Text(""),
-                      ),
-                      Divider()
-                    ],
                   ),
                 ),
-              );
-            }, childCount: brandList.length),
-          ),
-        ],
-      ),
+                SliverToBoxAdapter(
+                  child: FadeAnimation(0.5, Divider()),
+                ),
+                SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: 28,
+                  ),
+                ),
+                SliverToBoxAdapter(
+                    child: FadeAnimation(
+                        0.5,
+                        RengPicker(
+                          function: changePriceSlider,
+                          rangeValues: _currentRangeValues,
+                          title: "Price",
+                        ))),
+                SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: 28,
+                  ),
+                ),
+                SliverToBoxAdapter(
+                    child: FadeAnimation(
+                        0.5,
+                        ColorsFiltter(
+                          title: "Color",
+                          selectedcolorIds: selectedcolorIds,
+                          colorsList: colorsList,
+                          selecteColorId: selecteColorId,
+                          smallView: false,
+                        ))),
+                SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: 28,
+                  ),
+                ),
+                SliverToBoxAdapter(
+                    child: FadeAnimation(
+                        0.5,
+                        SizeFlitter(
+                            sizeList: sizeList,
+                            title: "Size",
+                            selecteSize: selecteSize,
+                            selectedSizeList: selectedSizeList))),
+                SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: 28,
+                  ),
+                ),
+                SliverToBoxAdapter(
+                    child: FadeAnimation(
+                        0.5,
+                        Container(
+                          margin: EdgeInsets.only(left: 18),
+                          child: CategoryText(
+                            text: "Brands",
+                            color: notifier.darkTheme
+                                ? Colors.white
+                                : Colors.black,
+                          ),
+                        ))),
+                SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: 12,
+                  ),
+                ),
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int index) {
+                    BrandName brandName = brandList[index];
+                    return Container(
+                      margin:
+                          EdgeInsets.symmetric(vertical: 0.0, horizontal: 18),
+                      child: FadeAnimation(
+                        0.5,
+                        Column(
+                          children: [
+                            ListTile(
+                              onTap: () {
+                                selectBrand(brandName);
+                              },
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0.0, horizontal: 0),
+                              title: BrandText(
+                                fontWeight:
+                                    selectedbrandList.contains(brandName.id)
+                                        ? FontWeight.bold
+                                        : FontWeight.normal,
+                                color: selectedbrandList.contains(brandName.id)
+                                    ? Theme.of(context).accentColor
+                                    : Colors.grey,
+                                text: brandName.name,
+                              ),
+                              trailing: selectedbrandList.contains(brandName.id)
+                                  ? Icon(
+                                      EvaIcons.checkmark,
+                                      color: Theme.of(context).accentColor,
+                                    )
+                                  : Text(""),
+                            ),
+                            Divider()
+                          ],
+                        ),
+                      ),
+                    );
+                  }, childCount: brandList.length),
+                ),
+              ],
+            ),
+          );
+        });
+      },
     );
   }
 }

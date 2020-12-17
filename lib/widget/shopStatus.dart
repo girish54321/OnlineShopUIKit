@@ -19,7 +19,10 @@ class ShopStatus extends StatelessWidget {
           color: Colors.white),
       child: Row(
         children: [
-          Text(shopOpen ? "OPEN" : "CLOSE"),
+          Text(
+            shopOpen ? "OPEN" : "CLOSE",
+            style: TextStyle(color: Colors.black),
+          ),
           SizedBox(
             width: 8,
           ),
@@ -49,7 +52,8 @@ class ShopImage extends StatelessWidget {
       child: Stack(
         children: [
           Container(
-              child: AppNetWorkIamge(radius: 0,
+              child: AppNetWorkIamge(
+            radius: 0,
             imageUrl: images[0],
           )),
           Positioned(

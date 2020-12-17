@@ -43,7 +43,6 @@ class ForgotPasswordUi extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       GoBackButton(
-                        color: Colors.black,
                         function: () {
                           Navigator.pop(context);
                         },
@@ -58,7 +57,6 @@ class ForgotPasswordUi extends StatelessWidget {
                             ),
                             child: AppTextH1(
                               text: "Forgot password?",
-                              color: Colors.black,
                             ),
                           )),
                       FadeAnimation(

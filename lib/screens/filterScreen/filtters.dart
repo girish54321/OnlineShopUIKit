@@ -24,7 +24,6 @@ class RengPicker extends StatelessWidget {
           margin: EdgeInsets.only(left: 18),
           child: CategoryText(
             text: "Price",
-            color: Colors.black,
           ),
         ),
         SizedBox(
@@ -71,7 +70,6 @@ class ColorsFiltter extends StatelessWidget {
                 margin: EdgeInsets.only(left: 18),
                 child: CategoryText(
                   text: title,
-                  color: Colors.black,
                 ),
               )
             : SizedBox(
@@ -98,7 +96,7 @@ class ColorsFiltter extends StatelessWidget {
                     child: Icon(
                       EvaIcons.checkmark,
                       color: selectedcolorIds.contains(index)
-                          ? Theme.of(context).accentColor
+                          ? Colors.black
                           : Colors.transparent,
                       size: 19,
                     ),
@@ -116,7 +114,7 @@ class ColorsFiltter extends StatelessWidget {
                     border: Border.all(
                         color:
                             selectedcolorIds.contains(colorsList[index].colorId)
-                                ? Theme.of(context).accentColor
+                                ? Colors.black
                                 : Colors.transparent,
                         width: 2),
                     color: colorsList[index].color,
@@ -155,7 +153,6 @@ class SizeFlitter extends StatelessWidget {
                 margin: EdgeInsets.only(left: 18),
                 child: CategoryText(
                   text: title,
-                  color: Colors.black,
                 ),
               )
             : SizedBox(
@@ -180,7 +177,7 @@ class SizeFlitter extends StatelessWidget {
                     borderRadius: BorderRadius.circular(4.0),
                   ),
                   color: selectedSizeList.contains(sizeList[index].sizeId)
-                      ? Theme.of(context).accentColor
+                      ? Colors.black
                       : Colors.grey,
                   onPressed: () {
                     selecteSize(sizeList[index]);

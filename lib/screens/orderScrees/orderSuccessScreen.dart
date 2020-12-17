@@ -27,7 +27,6 @@ class _OrderSuccessScreenState extends State<OrderSuccessScreen> {
                 ),
                 AppTextH1(
                   text: "Success!",
-                  color: Colors.black,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(

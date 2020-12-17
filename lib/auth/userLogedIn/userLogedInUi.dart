@@ -44,7 +44,6 @@ class UserLogedInUi extends StatelessWidget {
                     child: Center(
                       child: AppTextH1(
                         text: "Hello Girish!",
-                        color: Colors.black,
                       ),
                     ),
                   ),

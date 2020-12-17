@@ -2,12 +2,15 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:onlineShopUIKit/animasions/FadeAnimation.dart';
 import 'package:onlineShopUIKit/animasions/leftToRight.dart';
+import 'package:onlineShopUIKit/helper/theme.dart';
 import 'package:onlineShopUIKit/modal/shop.dart';
+import 'package:onlineShopUIKit/provider/productsProvider.dart';
 import 'package:onlineShopUIKit/widget/appText.dart';
 import 'package:onlineShopUIKit/widget/buttons.dart';
 import 'package:onlineShopUIKit/widget/header.dart';
 import 'package:onlineShopUIKit/widget/listItems.dart';
 import 'package:onlineShopUIKit/widget/shopStatus.dart';
+import 'package:provider/provider.dart';
 
 class Days {
   final String day;
@@ -52,142 +55,153 @@ class _ShopDetailsScreenState extends State<ShopDetailsScreen>
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
-    return Scaffold(
-      body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
-        slivers: <Widget>[
-          SliverToBoxAdapter(
-            child: LeftToRight(
-              child: Column(
-                children: [
-                  SafeArea(
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                        top: 8.0,
+    return Consumer<ProductsProvider>(
+      builder: (context, loginStateProvider, child) {
+        return Consumer<ThemeNotifier>(
+            builder: (context, ThemeNotifier notifier, child) {
+          return Scaffold(
+            body: CustomScrollView(
+              physics: const BouncingScrollPhysics(),
+              slivers: <Widget>[
+                SliverToBoxAdapter(
+                  child: LeftToRight(
+                    child: Column(
+                      children: [
+                        SafeArea(
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              top: 8.0,
+                            ),
+                            child: AppHearder(
+                              hideBackButton: false,
+                              buttonText: widget.shop.shopname,
+                              leftButtonColor: notifier.darkTheme
+                                  ? Colors.white
+                                  : Colors.black,
+                              rightAction: [],
+                              leftButton: true,
+                            ),
+                          ),
+                        ),
+                        Divider(),
+                      ],
+                    ),
+                  ),
+                ),
+                SliverToBoxAdapter(
+                    child: Hero(
+                  tag: widget.heroTag,
+                  child: ShopImage(
+                    size: size,
+                    images: [widget.shop.shopimage],
+                  ),
+                )),
+                SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: 22,
+                  ),
+                ),
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int index) {
+                    Days days = dayList[index];
+                    return Container(
+                      margin:
+                          EdgeInsets.symmetric(vertical: 0.0, horizontal: 27),
+                      child: FadeAnimation(
+                        0.5,
+                        WorkKingDaysListItem(
+                          text: days.day,
+                          rightText: days.timeing,
+                        ),
                       ),
-                      child: AppHearder(
-                        hideBackButton: false,
-                        buttonText: widget.shop.shopname,
-                        leftButtonColor: Colors.black,
-                        rightAction: [],
-                        leftButton: true,
+                    );
+                  }, childCount: dayList.length),
+                ),
+                SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: 16,
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: Divider(),
+                ),
+                SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: 16,
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: FadeAnimation(
+                    0.5,
+                    Container(
+                      margin:
+                          EdgeInsets.symmetric(vertical: 0.0, horizontal: 27),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          BrandText(
+                            fontWeight: FontWeight.w500,
+                            color: Theme.of(context).accentColor,
+                            text: widget.shop.shopname,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4.0),
+                            child: BrandText(
+                              color: Theme.of(context).accentColor,
+                              text: "Maharashtra 400064",
+                            ),
+                          )
+                        ],
                       ),
                     ),
                   ),
-                  Divider(),
-                ],
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-              child: Hero(
-            tag: widget.heroTag,
-            child: ShopImage(
-              size: size,
-              images: [widget.shop.shopimage],
-            ),
-          )),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 22,
-            ),
-          ),
-          SliverList(
-            delegate:
-                SliverChildBuilderDelegate((BuildContext context, int index) {
-              Days days = dayList[index];
-              return Container(
-                margin: EdgeInsets.symmetric(vertical: 0.0, horizontal: 27),
-                child: FadeAnimation(
+                ),
+                SliverToBoxAdapter(
+                    child: SizedBox(
+                  height: 16,
+                )),
+                SliverToBoxAdapter(
+                    child: FadeAnimation(
                   0.5,
-                  WorkKingDaysListItem(
-                    text: days.day,
-                    rightText: days.timeing,
-                  ),
-                ),
-              );
-            }, childCount: dayList.length),
-          ),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 16,
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Divider(),
-          ),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 16,
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: FadeAnimation(
-              0.5,
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 0.0, horizontal: 27),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    BrandText(
-                      fontWeight: FontWeight.w500,
-                      color: Theme.of(context).accentColor,
-                      text: widget.shop.shopname,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4.0),
-                      child: BrandText(
-                        color: Theme.of(context).accentColor,
-                        text: "Maharashtra 400064",
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-              child: SizedBox(
-            height: 16,
-          )),
-          SliverToBoxAdapter(
-              child: FadeAnimation(
-            0.5,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                    width: size.width - 108,
-                    child: BlackButton(
-                      buttonText: "GO TO THE SHOP",
-                      function: () {},
-                    )),
-                ClipOval(
-                  child: Material(
-                    color: Theme.of(context).accentColor,
-                    child: InkWell(
-                      splashColor: Colors.white,
-                      child: SizedBox(
-                          width: 60,
-                          height: 60,
-                          child: Icon(
-                            EvaIcons.phone,
-                            color: Colors.white,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                          width: size.width - 108,
+                          child: BlackButton(
+                            buttonText: "GO TO THE SHOP",
+                            function: () {},
                           )),
-                      onTap: () {},
-                    ),
+                      ClipOval(
+                        child: Material(
+                          color: Theme.of(context).accentColor,
+                          child: InkWell(
+                            splashColor: Colors.white,
+                            child: SizedBox(
+                                width: 60,
+                                height: 60,
+                                child: Icon(
+                                  EvaIcons.phone,
+                                  color: Colors.white,
+                                )),
+                            onTap: () {},
+                          ),
+                        ),
+                      )
+                    ],
                   ),
-                )
+                )),
+                SliverToBoxAdapter(
+                    child: SizedBox(
+                  height: 24,
+                )),
               ],
             ),
-          )),
-          SliverToBoxAdapter(
-              child: SizedBox(
-            height: 24,
-          )),
-        ],
-      ),
+          );
+        });
+      },
     );
   }
 }

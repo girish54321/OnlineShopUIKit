@@ -55,7 +55,6 @@ class ChangePasswordUi extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       GoBackButton(
-                        color: Colors.black,
                         function: () {
                           Navigator.pop(context);
                         },
@@ -70,7 +69,6 @@ class ChangePasswordUi extends StatelessWidget {
                             ),
                             child: AppTextH1(
                               text: "Update your Password",
-                              color: Colors.black,
                             ),
                           )),
                       FadeAnimation(
