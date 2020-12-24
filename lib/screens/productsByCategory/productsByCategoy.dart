@@ -28,7 +28,7 @@ class _ProductsByCategoryState extends State<ProductsByCategory> {
 
   _products() async {
     try {
-      http.Response response = await Network().getHomeScreenPlayList(
+      http.Response response = await Network().getDataFormApi(
           "https://api.jsonbin.io/b/5fd71e677e2e9559b15c92df/1");
       if (response.statusCode == 200) {
         var resBody = json.decode(response.body);

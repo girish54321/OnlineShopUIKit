@@ -26,7 +26,7 @@ class _SubCategroryScreenState extends State<SubCategroryScreen> {
 
   _subcategorys() async {
     try {
-      http.Response response = await Network().getHomeScreenPlayList(
+      http.Response response = await Network().getDataFormApi(
           "https://api.jsonbin.io/b/5fd766efbef8b7699e59716e/1");
       if (response.statusCode == 200) {
         var resBody = json.decode(response.body);

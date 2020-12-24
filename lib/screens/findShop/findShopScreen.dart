@@ -49,6 +49,7 @@ class _FindShopScreenState extends State<FindShopScreen>
     ])
   ];
   @override
+  // ignore: must_call_super
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 

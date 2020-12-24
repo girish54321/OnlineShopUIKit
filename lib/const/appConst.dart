@@ -1,3 +1,4 @@
+// ignore: library_names
 library Constants;
 
 const String MAIN_URL = "https://reqres.in/api/";

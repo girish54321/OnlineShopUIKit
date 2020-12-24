@@ -37,8 +37,8 @@ class _HomeScreenState extends State<HomeScreen>
 
   _loadBanners() async {
     try {
-      http.Response response = await Network().getHomeScreenPlayList(
-          "https://api.jsonbin.io/b/5fd369f382e9306ae6004070");
+      http.Response response = await Network()
+          .getDataFormApi("https://api.jsonbin.io/b/5fd369f382e9306ae6004070");
       if (response.statusCode == 200) {
         var resBody = json.decode(response.body);
         print(resBody['banners'].length);
@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen>
 
   _categorys() async {
     try {
-      http.Response response = await Network().getHomeScreenPlayList(
+      http.Response response = await Network().getDataFormApi(
           "https://api.jsonbin.io/b/5fd36f7ffbb23c2e36a56cdb/4");
       if (response.statusCode == 200) {
         var resBody = json.decode(response.body);
@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen>
 
   _products() async {
     try {
-      http.Response response = await Network().getHomeScreenPlayList(
+      http.Response response = await Network().getDataFormApi(
           "https://api.jsonbin.io/b/5fd71e677e2e9559b15c92df/1");
       if (response.statusCode == 200) {
         var resBody = json.decode(response.body);
