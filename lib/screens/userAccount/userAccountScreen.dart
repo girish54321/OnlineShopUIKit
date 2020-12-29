@@ -94,7 +94,7 @@ class _UserAccountScreenState extends State<UserAccountScreen>
                 )),
                 SliverToBoxAdapter(
                   child: FadeAnimation(
-                    1.1,
+                    0.5,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
