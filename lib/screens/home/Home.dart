@@ -5,6 +5,7 @@ import 'package:onlineShopUIKit/animasions/FadeAnimation.dart';
 import 'package:onlineShopUIKit/animasions/rightToLeft.dart';
 import 'package:onlineShopUIKit/modal/clothingCategory.dart';
 import 'package:onlineShopUIKit/modal/products.dart';
+import 'package:onlineShopUIKit/modal/whatsNew.dart';
 import 'package:onlineShopUIKit/network_utils/api.dart';
 import 'package:onlineShopUIKit/modal/banners.dart';
 import 'package:onlineShopUIKit/screens/productsByCategory/productsByCategoy.dart';
@@ -30,9 +31,11 @@ class _HomeScreenState extends State<HomeScreen>
   Banners banners;
   ClothingCategory clothingCategory;
   Products products;
+  WhatsNew whatsNew;
   bool bannerLoading = true;
   bool categoryLoading = true;
   bool productsLoading = true;
+  bool whatsNewLoading = true;
 
   _loadBanners() async {
     try {
@@ -45,6 +48,22 @@ class _HomeScreenState extends State<HomeScreen>
         print(banners.banners[0].imageUrl);
         setState(() {
           bannerLoading = false;
+        });
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  _loadWahtsNew() async {
+    try {
+      http.Response response = await Network()
+          .getDataFormApi("https://api.jsonbin.io/b/5fef131914be547060185924");
+      if (response.statusCode == 200) {
+        var resBody = json.decode(response.body);
+        whatsNew = new WhatsNew.fromJson(resBody);
+        setState(() {
+          whatsNewLoading = false;
         });
       }
     } catch (e) {
@@ -90,6 +109,7 @@ class _HomeScreenState extends State<HomeScreen>
     _loadBanners();
     _categorys();
     _products();
+    _loadWahtsNew();
   }
 
   @override
@@ -323,6 +343,61 @@ class _HomeScreenState extends State<HomeScreen>
                     ),
             ),
           ),
+          SliverToBoxAdapter(
+              child: FadeAnimation(
+            0.5,
+            SeeAppTitle(
+              title: "Whats New",
+              function: () {},
+            ),
+          )),
+          SliverToBoxAdapter(
+            child: FadeAnimation(
+              0.5,
+              whatsNewLoading
+                  ? Container(
+                      height: 220,
+                      width: double.infinity,
+                      child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 2,
+                        itemBuilder: (BuildContext context, int index) {
+                          return RightToLeft(
+                              child: WhatsNewVIew(
+                            title: "",
+                            subTitle: "",
+                            imageUrl:
+                                "https://images.unsplash.com/photo-1467043237213-65f2da53396f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8Y2xvdGhlc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60",
+                          ));
+                        },
+                      ),
+                    )
+                  : Container(
+                      height: 220,
+                      width: double.infinity,
+                      child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: whatsNew.whatsNew.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return RightToLeft(
+                              child: WhatsNewVIew(
+                            title: whatsNew.whatsNew[index].text != null
+                                ? whatsNew.whatsNew[index].text
+                                : "",
+                            subTitle: whatsNew.whatsNew[index].text,
+                            imageUrl: whatsNew.whatsNew[index].imageUrl,
+                          ));
+                        },
+                      ),
+                    ),
+            ),
+          ),
+          SliverToBoxAdapter(
+              child: SizedBox(
+            height: 26,
+          )),
         ],
       ),
     );

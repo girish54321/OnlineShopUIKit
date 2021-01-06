@@ -583,3 +583,70 @@ class WorkKingDaysListItem extends StatelessWidget {
         ));
   }
 }
+
+class WhatsNewVIew extends StatelessWidget {
+  final String title;
+  final String subTitle;
+  final String imageUrl;
+
+  const WhatsNewVIew(
+      {Key key,
+      @required this.title,
+      @required this.subTitle,
+      @required this.imageUrl})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    return Container(
+      // height: 220,
+      width: size.width - 60,
+      margin: EdgeInsets.only(
+        left: 16,
+      ),
+      child: Stack(
+        children: [
+          Container(
+              margin: EdgeInsets.only(right: 22),
+              child: AppNetWorkIamge(
+                imageUrl: imageUrl,
+              )),
+          Positioned(
+              bottom: 16,
+              right: 1,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                // width: 160,
+                height: 70,
+                padding: EdgeInsets.all(14.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        AppTextP1(
+                          numberOfLine: 1,
+                          text: title,
+                        ),
+                        PriceText(
+                          text: subTitle,
+                        ),
+                      ],
+                    ),
+                    IconButton(
+                        icon: Icon(EvaIcons.arrowForwardOutline,
+                            color: Colors.black),
+                        onPressed: () {}),
+                  ],
+                ),
+              ))
+        ],
+      ),
+    );
+  }
+}

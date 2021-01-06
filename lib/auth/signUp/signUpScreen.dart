@@ -9,7 +9,6 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
-
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final nameController = TextEditingController();
@@ -24,7 +23,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   void changeVaildEmail(bool value) {
-    print("validEmail");
     print(value);
     setState(() {
       validEmail = value;
@@ -54,6 +52,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
     setState(() {
       validName = true;
     });
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    nameController.dispose();
+    super.dispose();
   }
 
   @override
