@@ -8,6 +8,7 @@ import 'package:onlineShopUIKit/screens/productDetails/productDetails.dart';
 import 'package:onlineShopUIKit/widget/floatingSerachButton.dart';
 import 'package:onlineShopUIKit/widget/header.dart';
 import 'package:onlineShopUIKit/widget/listItems.dart';
+import 'package:onlineShopUIKit/widget/statusBarBuilder.dart';
 import 'package:provider/provider.dart';
 
 class CartScreen extends StatefulWidget {
@@ -90,87 +91,93 @@ class _CartScreenState extends State<CartScreen>
     return Consumer<ThemeNotifier>(
         builder: (context, ThemeNotifier notifier, child) {
       return Scaffold(
-        body: CustomScrollView(
-          physics: const BouncingScrollPhysics(),
-          slivers: <Widget>[
-            SliverToBoxAdapter(
-              child: FadeAnimation(
-                0.5,
-                Column(
-                  children: [
-                    SafeArea(
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          top: 8.0,
-                        ),
-                        child: AppHearder(
-                          hideBackButton: false,
-                          buttonText: "CART",
-                          leftButtonColor:
-                              notifier.darkTheme ? Colors.white : Colors.black,
-                          rightAction: [],
-                          leftButton: true,
+        body: StatusBarBuilder(
+          dark: false,
+          useProviderTheme: true,
+          child: CustomScrollView(
+            physics: const BouncingScrollPhysics(),
+            slivers: <Widget>[
+              SliverToBoxAdapter(
+                child: FadeAnimation(
+                  0.5,
+                  Column(
+                    children: [
+                      SafeArea(
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            top: 8.0,
+                          ),
+                          child: AppHearder(
+                            hideBackButton: false,
+                            buttonText: "CART",
+                            leftButtonColor: notifier.darkTheme
+                                ? Colors.white
+                                : Colors.black,
+                            rightAction: [],
+                            leftButton: true,
+                          ),
                         ),
                       ),
-                    ),
-                    Divider(),
-                  ],
+                      Divider(),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            SliverToBoxAdapter(
-              child: SizedBox(
-                height: 21,
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 21,
+                ),
               ),
-            ),
-            SliverList(
-              delegate:
-                  SliverChildBuilderDelegate((BuildContext context, int index) {
-                Product productItem = products.products[index];
-                return Container(
-                  margin: EdgeInsets.symmetric(vertical: 0.0, horizontal: 27),
-                  child: FadeAnimation(
-                    0.5,
-                    CartItem(
-                      size: size,
-                      imageUrl: productItem.image,
-                      price: Helper().moneyFormat(productItem.price.toString()),
-                      title: productItem.name,
-                      function: () {
-                        Helper().goToPage(
-                            context, ProductDetails(product: productItem));
-                      },
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                  Product productItem = products.products[index];
+                  return Container(
+                    margin: EdgeInsets.symmetric(vertical: 0.0, horizontal: 27),
+                    child: FadeAnimation(
+                      0.5,
+                      CartItem(
+                        size: size,
+                        imageUrl: productItem.image,
+                        price:
+                            Helper().moneyFormat(productItem.price.toString()),
+                        title: productItem.name,
+                        function: () {
+                          Helper().goToPage(
+                              context, ProductDetails(product: productItem));
+                        },
+                      ),
                     ),
-                  ),
-                );
-              }, childCount: products.products.length),
-            ),
-            SliverToBoxAdapter(
-                child: FadeAnimation(
-              0.5,
-              ListItemsWithDvider(
-                padding: EdgeInsets.symmetric(vertical: 11, horizontal: 18),
-                text: "Do you have a Promotional Code",
-                rightText: null,
-                rightIcon: null,
+                  );
+                }, childCount: products.products.length),
               ),
-            )),
-            SliverToBoxAdapter(
-                child: FadeAnimation(
-              0.5,
-              ListItemsWithDvider(
-                padding: EdgeInsets.symmetric(vertical: 11, horizontal: 18),
-                text: "Delivery",
-                rightText: "Standard - Free",
-                rightIcon: null,
+              SliverToBoxAdapter(
+                  child: FadeAnimation(
+                0.5,
+                ListItemsWithDvider(
+                  padding: EdgeInsets.symmetric(vertical: 11, horizontal: 18),
+                  text: "Do you have a Promotional Code",
+                  rightText: null,
+                  rightIcon: null,
+                ),
+              )),
+              SliverToBoxAdapter(
+                  child: FadeAnimation(
+                0.5,
+                ListItemsWithDvider(
+                  padding: EdgeInsets.symmetric(vertical: 11, horizontal: 18),
+                  text: "Delivery",
+                  rightText: "Standard - Free",
+                  rightIcon: null,
+                ),
+              )),
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 86,
+                ),
               ),
-            )),
-            SliverToBoxAdapter(
-              child: SizedBox(
-                height: 86,
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
         floatingActionButton: FlothingSearchButton(
           buttonText: "BUY",

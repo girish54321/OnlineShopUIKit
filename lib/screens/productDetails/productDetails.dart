@@ -166,13 +166,14 @@ class _ProductDetailsState extends State<ProductDetails> {
               physics: const BouncingScrollPhysics(),
               slivers: <Widget>[
                 SliverAppBar(
-                  expandedHeight: size.height * 0.7,
+                  expandedHeight: size.height * 0.5,
                   floating: false,
-                  pinned: false,
+                  pinned: true,
+                  title: Text(widget.product.name.toUpperCase()),
                   leading: IconButton(
                     icon: Icon(
                       EvaIcons.arrowIosBack,
-                      color: notifier.darkTheme ? Colors.white : Colors.black,
+                      // color: notifier.darkTheme ? Colors.white : Colors.black,
                     ),
                     onPressed: () {
                       Navigator.pop(context);
@@ -203,10 +204,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                     child: FadeAnimation(
                   0.5,
                   Container(
-                    margin: EdgeInsets.only(
-                        top: 18, left: 16, right: 16, bottom: 1),
+                    margin: EdgeInsets.only(left: 16, right: 16, bottom: 1),
                     child: Text(
-                      widget.product.name,
+                      widget.product.name.toUpperCase(),
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 26,

@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -17,18 +18,34 @@ class Helper {
   }
 
   goToPage(BuildContext context, Widget child) {
-    Navigator.push(
+    if (Platform.isIOS) {
+      Navigator.push(
         context,
-        PageTransition(
-          type: PageTransitionType.rightToLeft,
-          child: child,
-        ));
+        MaterialPageRoute(
+          builder: (context) => child,
+        ),
+      );
+    } else {
+      Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.rightToLeft,
+            child: child,
+          ));
+    }
   }
 
   goBack(
     BuildContext context,
   ) {
     Navigator.pop(context);
+  }
+
+  getPhysicsForPlatForm() {
+    print("Are You Working");
+    return Platform.isIOS
+        ? const BouncingScrollPhysics()
+        : const ClampingScrollPhysics();
   }
 
   showSnackBar(message, title, context, bool error) {

@@ -150,6 +150,7 @@ class _FindShopScreenState extends State<FindShopScreen>
                 margin: EdgeInsets.symmetric(horizontal: 18, vertical: 16),
                 child: CategoryText(
                   text: "All Stores",
+                  color: Colors.black,
                 ),
               ),
             ),

@@ -29,6 +29,7 @@ class _SearchScreenState extends State<SearchScreen> {
           SliverAppBar(
             elevation: 0,
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            brightness: Brightness.light,
             expandedHeight: 0,
             floating: false,
             pinned: false,

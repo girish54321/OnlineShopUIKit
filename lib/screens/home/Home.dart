@@ -117,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
+        physics: Helper().getPhysicsForPlatForm(),
         slivers: <Widget>[
           SliverToBoxAdapter(
             child: FadeAnimation(

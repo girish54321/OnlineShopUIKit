@@ -1,5 +1,6 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:onlineShopUIKit/animasions/FadeAnimation.dart';
 import 'package:onlineShopUIKit/helper/theme.dart';
 import 'package:onlineShopUIKit/provider/productsProvider.dart';
@@ -39,12 +40,14 @@ class _UserAccountScreenState extends State<UserAccountScreen>
   // ignore: must_call_super
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-
+    var idDakTheme = Provider.of<ThemeNotifier>(context);
     return Consumer<ProductsProvider>(
       builder: (context, loginStateProvider, child) {
-        return Consumer<ThemeNotifier>(
-            builder: (context, ThemeNotifier notifier, child) {
-          return Scaffold(
+        return AnnotatedRegion<SystemUiOverlayStyle>(
+          value: idDakTheme.darkTheme
+              ? SystemUiOverlayStyle.light
+              : SystemUiOverlayStyle.dark,
+          child: Scaffold(
             body: CustomScrollView(
               physics: const BouncingScrollPhysics(),
               slivers: <Widget>[
@@ -61,7 +64,7 @@ class _UserAccountScreenState extends State<UserAccountScreen>
                             child: AppHearder(
                               hideBackButton: false,
                               buttonText: "ACCOUNT",
-                              leftButtonColor: notifier.darkTheme
+                              leftButtonColor: idDakTheme.darkTheme
                                   ? Colors.white
                                   : Colors.black,
                               rightAction: [],
@@ -141,8 +144,8 @@ class _UserAccountScreenState extends State<UserAccountScreen>
                 )
               ],
             ),
-          );
-        });
+          ),
+        );
       },
     );
   }

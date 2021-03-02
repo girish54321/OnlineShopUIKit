@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
             builder: (context, ThemeNotifier notifier, child) {
               return MaterialApp(
                   theme: notifier.darkTheme ? dark : light,
-                  title: 'Online Shop',
+                  title: 'OnlineShopUiKit',
                   home: WelcomeScreen());
             },
           );
