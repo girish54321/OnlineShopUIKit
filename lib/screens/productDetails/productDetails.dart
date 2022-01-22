@@ -5,6 +5,7 @@ import 'package:onlineShopUIKit/animasions/rightToLeft.dart';
 import 'package:onlineShopUIKit/helper/theme.dart';
 import 'package:onlineShopUIKit/modal/products.dart';
 import 'package:onlineShopUIKit/provider/productsProvider.dart';
+import 'package:onlineShopUIKit/screens/productDetails/widget/orderPlacedDialog.dart';
 import 'package:onlineShopUIKit/widget/appText.dart';
 import 'package:onlineShopUIKit/widget/buttons.dart';
 import 'package:onlineShopUIKit/helper/helper.dart';
@@ -87,68 +88,7 @@ class _ProductDetailsState extends State<ProductDetails> {
       context: context,
       barrierDismissible: true, // user must tap button!
       builder: (BuildContext context) {
-        return AlertDialog(
-          content: Stack(
-            children: [
-              SingleChildScrollView(
-                child: ListBody(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(top: 24, bottom: 24),
-                      child: Center(
-                          child: UserProfilePic(
-                        isCheckOut: true,
-                      )),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 8,
-                      ),
-                      child: Center(
-                        child: AppTextH1(
-                          text: "Success!",
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 8,
-                      ),
-                      child: Center(
-                        child: AppTextP1(
-                          text: "1 product has been added to cart",
-                        ),
-                      ),
-                    ),
-                    FadeAnimation(
-                      0.1,
-                      Container(
-                        margin: const EdgeInsets.only(top: 34, bottom: 24),
-                        child: BlackButton(
-                          function: () {
-                            Navigator.of(context).pop();
-                          },
-                          buttonText: "CHECKOUT",
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Positioned(
-                right: 1,
-                child: IconButton(
-                    icon: Icon(
-                      EvaIcons.close,
-                      size: 32,
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    }),
-              )
-            ],
-          ),
-        );
+        return OrderPlacedDialog();
       },
     );
   }
@@ -163,7 +103,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             builder: (context, ThemeNotifier notifier, child) {
           return Scaffold(
             body: CustomScrollView(
-              physics: const BouncingScrollPhysics(),
+              physics: Helper().getPhysicsForPlatForm(),
               slivers: <Widget>[
                 SliverAppBar(
                   expandedHeight: size.height * 0.5,
@@ -314,7 +254,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       return Container(
                         height: 256,
                         child: ListView.builder(
-                          physics: const BouncingScrollPhysics(),
+                          physics: Helper().getPhysicsForPlatForm(),
                           scrollDirection: Axis.horizontal,
                           itemCount: productsProvider.products.products.length,
                           itemBuilder: (BuildContext context, int index) {

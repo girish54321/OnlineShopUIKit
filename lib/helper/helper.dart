@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:onlineShopUIKit/responsive/enums/device_screen_type.dart';
+import 'package:onlineShopUIKit/responsive/utils/ui_utils.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:vibration/vibration.dart';
@@ -46,6 +48,20 @@ class Helper {
     return Platform.isIOS
         ? const BouncingScrollPhysics()
         : const ClampingScrollPhysics();
+  }
+
+  isTablet(BuildContext context) {
+    bool isTablet = false;
+    var mediaQuery = MediaQuery.of(context);
+    DeviceScreenType deviceScreenType = getDeviceType(mediaQuery);
+
+    if (deviceScreenType == DeviceScreenType.Mobile) {
+      isTablet = false;
+    } else if (deviceScreenType == DeviceScreenType.Tablet) {
+      isTablet = true;
+    }
+    print(isTablet);
+    return isTablet;
   }
 
   showSnackBar(message, title, context, bool error) {

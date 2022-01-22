@@ -22,7 +22,7 @@ class _WishListScreenState extends State<WishListScreen> {
     final double itemWidth = size.width / 2;
     return Scaffold(
       body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
+        physics: Helper().getPhysicsForPlatForm(),
         slivers: <Widget>[
           SliverAppBar(
             elevation: 0,

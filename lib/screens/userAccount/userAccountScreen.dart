@@ -2,6 +2,7 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:onlineShopUIKit/animasions/FadeAnimation.dart';
+import 'package:onlineShopUIKit/helper/helper.dart';
 import 'package:onlineShopUIKit/helper/theme.dart';
 import 'package:onlineShopUIKit/provider/productsProvider.dart';
 import 'package:onlineShopUIKit/widget/header.dart';
@@ -49,7 +50,7 @@ class _UserAccountScreenState extends State<UserAccountScreen>
               : SystemUiOverlayStyle.dark,
           child: Scaffold(
             body: CustomScrollView(
-              physics: const BouncingScrollPhysics(),
+              physics: Helper().getPhysicsForPlatForm(),
               slivers: <Widget>[
                 SliverToBoxAdapter(
                   child: FadeAnimation(

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:onlineShopUIKit/helper/helper.dart';
 import 'package:onlineShopUIKit/widget/appNetworkImage.dart';
 
 class ProductImageView extends StatefulWidget {
@@ -101,7 +102,7 @@ class _ProductImageViewState extends State<ProductImageView> {
         // color: open ? Colors.transparent : Colors.black,
         color: Colors.black,
         child: ListView.builder(
-          physics: const BouncingScrollPhysics(),
+          physics: Helper().getPhysicsForPlatForm(),
           scrollDirection: Axis.horizontal,
           itemCount: widget.images.length,
           itemBuilder: (BuildContext context, int index) {

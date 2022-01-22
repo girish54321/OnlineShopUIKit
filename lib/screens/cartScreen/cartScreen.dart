@@ -95,7 +95,7 @@ class _CartScreenState extends State<CartScreen>
           dark: false,
           useProviderTheme: true,
           child: CustomScrollView(
-            physics: const BouncingScrollPhysics(),
+            physics: Helper().getPhysicsForPlatForm(),
             slivers: <Widget>[
               SliverToBoxAdapter(
                 child: FadeAnimation(

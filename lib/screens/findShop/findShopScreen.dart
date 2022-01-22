@@ -55,7 +55,7 @@ class _FindShopScreenState extends State<FindShopScreen>
 
     return Scaffold(
       body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
+        physics: Helper().getPhysicsForPlatForm(),
         slivers: <Widget>[
           SliverToBoxAdapter(
               child: Container(

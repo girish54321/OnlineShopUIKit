@@ -1,6 +1,7 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:onlineShopUIKit/animasions/FadeAnimation.dart';
+import 'package:onlineShopUIKit/helper/helper.dart';
 import 'package:onlineShopUIKit/widget/searchBox.dart';
 import 'package:onlineShopUIKit/widget/listItems.dart';
 import 'package:onlineShopUIKit/screens/filterScreen/filterScreen.dart';
@@ -24,7 +25,7 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
+        physics: Helper().getPhysicsForPlatForm(),
         slivers: <Widget>[
           SliverAppBar(
             elevation: 0,

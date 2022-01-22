@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onlineShopUIKit/helper/helper.dart';
 import 'package:onlineShopUIKit/helper/theme.dart';
 import 'package:onlineShopUIKit/widget/appNetworkImage.dart';
 import 'package:provider/provider.dart';
@@ -18,21 +19,21 @@ class UserProfileHeader extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
+    var isTablet = Helper().isTablet(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
           margin: EdgeInsets.only(bottom: 18),
-          height: 150,
-          // color: Colors.red,
+          height: isTablet ? 150 : size.width * 0.2,
           width: size.width * 0.86,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                height: 150,
-                width: 150,
+                height: isTablet ? 150 : size.width * 0.2,
+                width: isTablet ? 150 : size.width * 0.2,
                 child: AppNetWorkIamge(
                   imageUrl: imageUrl,
                 ),

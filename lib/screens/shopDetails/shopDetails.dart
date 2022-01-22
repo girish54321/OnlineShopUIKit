@@ -2,6 +2,7 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:onlineShopUIKit/animasions/FadeAnimation.dart';
 import 'package:onlineShopUIKit/animasions/leftToRight.dart';
+import 'package:onlineShopUIKit/helper/helper.dart';
 import 'package:onlineShopUIKit/helper/theme.dart';
 import 'package:onlineShopUIKit/modal/shop.dart';
 import 'package:onlineShopUIKit/provider/productsProvider.dart';
@@ -61,7 +62,7 @@ class _ShopDetailsScreenState extends State<ShopDetailsScreen>
             builder: (context, ThemeNotifier notifier, child) {
           return Scaffold(
             body: CustomScrollView(
-              physics: const BouncingScrollPhysics(),
+              physics: Helper().getPhysicsForPlatForm(),
               slivers: <Widget>[
                 SliverToBoxAdapter(
                   child: LeftToRight(

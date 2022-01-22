@@ -129,18 +129,18 @@ class HtmlText extends StatelessWidget {
       onLinkTap: (url) {
         // open url in a webview
       },
-      style: {
-        // "div": Style(
-        //   block: Block(
-        //     margin: EdgeInsets.all(16),
-        //     border: Border.all(width: 6),
-        //     backgroundColor: Colors.grey,
-        //   ),
-        //   textStyle: TextStyle(
-        //     color: Colors.red,
-        //   ),
-        // ),
-      },
+      // style: {
+      //   // "div": Style(
+      //   //   block: Block(
+      //   //     margin: EdgeInsets.all(16),
+      //   //     border: Border.all(width: 6),
+      //   //     backgroundColor: Colors.grey,
+      //   //   ),
+      //   //   textStyle: TextStyle(
+      //   //     color: Colors.red,
+      //   //   ),
+      //   // ),
+      // },
       onImageTap: (src) {
         // Display the image in large form.
       },

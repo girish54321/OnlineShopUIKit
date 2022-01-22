@@ -13,6 +13,7 @@ import 'package:onlineShopUIKit/screens/subCategory/subCategoryScreen.dart';
 import 'package:onlineShopUIKit/widget/header.dart';
 import 'package:onlineShopUIKit/widget/listItems.dart';
 import 'package:http/http.dart' as http;
+import 'package:onlineShopUIKit/widget/statusBarBuilder.dart';
 import 'package:provider/provider.dart';
 
 class AllCategroryScreen extends StatefulWidget {
@@ -54,128 +55,132 @@ class _AllCategroryScreenState extends State<AllCategroryScreen> {
       builder: (context, loginStateProvider, child) {
         return Consumer<ThemeNotifier>(
             builder: (context, ThemeNotifier notifier, child) {
-          return Scaffold(
-            body: CustomScrollView(
-              physics: const BouncingScrollPhysics(),
-              slivers: <Widget>[
-                SliverAppBar(
-                  elevation: 0,
-                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                  expandedHeight: 60,
-                  floating: false,
-                  pinned: true,
-                  actions: [
-                    IconButton(
-                        icon: Icon(EvaIcons.heart,
-                            color: notifier.darkTheme
-                                ? Colors.white
-                                : Colors.black),
-                        onPressed: () {}),
-                    IconButton(
-                        icon: Icon(EvaIcons.search,
-                            color: notifier.darkTheme
-                                ? Colors.white
-                                : Colors.black),
-                        onPressed: () {
-                          Helper().goToPage(context, SearchScreen());
-                        }),
-                  ],
-                  leading: IconButton(
-                    icon: Icon(EvaIcons.arrowIosBack,
-                        color:
-                            notifier.darkTheme ? Colors.white : Colors.black),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  flexibleSpace: FlexibleSpaceBar(
-                    background: FadeAnimation(
-                      0.5,
-                      SafeArea(
-                        child: AppHearder(
-                          dropDwon: Container(
-                            margin: EdgeInsets.only(left: 62.0, top: 4),
-                            child: DropdownButton(
-                                underline: Text(""),
-                                icon: Padding(
-                                  padding: const EdgeInsets.only(left: 4.0),
-                                  child: Icon(
-                                    EvaIcons.arrowIosDownward,
-                                    color: notifier.darkTheme
-                                        ? Colors.white
-                                        : Colors.black,
-                                    size: 18,
-                                  ),
-                                ),
-                                value: _value,
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: notifier.darkTheme
-                                        ? Colors.white
-                                        : Colors.black,
-                                    fontWeight: FontWeight.w600),
-                                items: [
-                                  DropdownMenuItem(
-                                    child: Text(
-                                      "WOMAN",
+          return StatusBarBuilder(
+            dark: true,
+            useProviderTheme: false,
+            child: Scaffold(
+              body: CustomScrollView(
+                physics: Helper().getPhysicsForPlatForm(),
+                slivers: <Widget>[
+                  SliverAppBar(
+                    elevation: 0,
+                    // backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                    expandedHeight: 60,
+                    floating: false,
+                    pinned: false,
+                    actions: [
+                      IconButton(
+                          icon: Icon(EvaIcons.heart,
+                              color: notifier.darkTheme
+                                  ? Colors.white
+                                  : Colors.black),
+                          onPressed: () {}),
+                      IconButton(
+                          icon: Icon(EvaIcons.search,
+                              color: notifier.darkTheme
+                                  ? Colors.white
+                                  : Colors.black),
+                          onPressed: () {
+                            Helper().goToPage(context, SearchScreen());
+                          }),
+                    ],
+                    leading: IconButton(
+                      icon: Icon(EvaIcons.arrowIosBack,
+                          color:
+                              notifier.darkTheme ? Colors.white : Colors.black),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                    flexibleSpace: FlexibleSpaceBar(
+                      background: FadeAnimation(
+                        0.5,
+                        SafeArea(
+                          child: AppHearder(
+                            dropDwon: Container(
+                              margin: EdgeInsets.only(left: 62.0, top: 4),
+                              child: DropdownButton(
+                                  underline: Text(""),
+                                  icon: Padding(
+                                    padding: const EdgeInsets.only(left: 4.0),
+                                    child: Icon(
+                                      EvaIcons.arrowIosDownward,
+                                      color: notifier.darkTheme
+                                          ? Colors.white
+                                          : Colors.black,
+                                      size: 18,
                                     ),
-                                    value: 1,
                                   ),
-                                  DropdownMenuItem(
-                                    child: Text(
-                                      "MAN",
+                                  value: _value,
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: notifier.darkTheme
+                                          ? Colors.white
+                                          : Colors.black,
+                                      fontWeight: FontWeight.w600),
+                                  items: [
+                                    DropdownMenuItem(
+                                      child: Text(
+                                        "WOMAN",
+                                      ),
+                                      value: 1,
                                     ),
-                                    value: 2,
-                                  ),
-                                ],
-                                onChanged: (value) {
-                                  setState(() {
-                                    _value = value;
-                                  });
-                                }),
+                                    DropdownMenuItem(
+                                      child: Text(
+                                        "MAN",
+                                      ),
+                                      value: 2,
+                                    ),
+                                  ],
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _value = value;
+                                    });
+                                  }),
+                            ),
+                            buttonText: null,
+                            leftButtonColor: Colors.black,
+                            rightAction: [],
+                            leftButton: true,
+                            hideBackButton: true,
                           ),
-                          buttonText: null,
-                          leftButtonColor: Colors.black,
-                          rightAction: [],
-                          leftButton: true,
-                          hideBackButton: true,
                         ),
                       ),
                     ),
                   ),
-                ),
-                categoryLoading
-                    ? SliverToBoxAdapter(
-                        child: FadeAnimation(
-                          0.5,
-                          Center(
-                            child: Container(
-                                margin: EdgeInsets.only(top: 16),
-                                child: CircularProgressIndicator()),
+                  categoryLoading
+                      ? SliverToBoxAdapter(
+                          child: FadeAnimation(
+                            0.5,
+                            Center(
+                              child: Container(
+                                  margin: EdgeInsets.only(top: 16),
+                                  child: CircularProgressIndicator()),
+                            ),
+                          ),
+                        )
+                      : SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                            (BuildContext context, int index) {
+                              Category category =
+                                  clothingCategory.category[index];
+                              return FadeAnimation(
+                                0.6,
+                                CategoryListItem(
+                                  function: () {
+                                    Helper().goToPage(
+                                        context, SubCategroryScreen());
+                                  },
+                                  imageUrl: category.imageUrl,
+                                  text: category.text,
+                                ),
+                              );
+                            },
+                            childCount: clothingCategory.category.length,
                           ),
                         ),
-                      )
-                    : SliverList(
-                        delegate: SliverChildBuilderDelegate(
-                          (BuildContext context, int index) {
-                            Category category =
-                                clothingCategory.category[index];
-                            return FadeAnimation(
-                              0.6,
-                              CategoryListItem(
-                                function: () {
-                                  Helper()
-                                      .goToPage(context, SubCategroryScreen());
-                                },
-                                imageUrl: category.imageUrl,
-                                text: category.text,
-                              ),
-                            );
-                          },
-                          childCount: clothingCategory.category.length,
-                        ),
-                      ),
-              ],
+                ],
+              ),
             ),
           );
         });

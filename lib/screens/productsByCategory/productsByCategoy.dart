@@ -59,7 +59,7 @@ class _ProductsByCategoryState extends State<ProductsByCategory> {
             builder: (context, ThemeNotifier notifier, child) {
           return Scaffold(
             body: CustomScrollView(
-              physics: const BouncingScrollPhysics(),
+              physics: Helper().getPhysicsForPlatForm(),
               slivers: <Widget>[
                 SliverAppBar(
                   elevation: 0,

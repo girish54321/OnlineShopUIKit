@@ -1,5 +1,6 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:onlineShopUIKit/helper/helper.dart';
 import 'package:onlineShopUIKit/widget/appText.dart';
 import 'package:onlineShopUIKit/screens/filterScreen/filterScreen.dart';
 
@@ -83,7 +84,7 @@ class ColorsFiltter extends StatelessWidget {
           height: 50.0,
           width: double.infinity,
           child: ListView.builder(
-            physics: BouncingScrollPhysics(),
+            physics: Helper().getPhysicsForPlatForm(),
             scrollDirection: Axis.horizontal,
             itemCount: colorsList.length,
             itemBuilder: (BuildContext context, int index) {
@@ -165,7 +166,7 @@ class SizeFlitter extends StatelessWidget {
           height: 40.0,
           width: double.infinity,
           child: ListView.builder(
-            physics: BouncingScrollPhysics(),
+            physics: Helper().getPhysicsForPlatForm(),
             scrollDirection: Axis.horizontal,
             itemCount: sizeList.length,
             itemBuilder: (BuildContext context, int index) {

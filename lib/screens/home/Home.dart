@@ -174,7 +174,7 @@ class _HomeScreenState extends State<HomeScreen>
                 height: 220,
                 child: categoryLoading
                     ? ListView.builder(
-                        physics: const BouncingScrollPhysics(),
+                        physics: Helper().getPhysicsForPlatForm(),
                         scrollDirection: Axis.horizontal,
                         itemCount: 2,
                         itemBuilder: (BuildContext context, int index) {
@@ -187,7 +187,7 @@ class _HomeScreenState extends State<HomeScreen>
                         },
                       )
                     : ListView.builder(
-                        physics: const BouncingScrollPhysics(),
+                        physics: Helper().getPhysicsForPlatForm(),
                         scrollDirection: Axis.horizontal,
                         itemCount: categoryLoading
                             ? 2
@@ -222,7 +222,7 @@ class _HomeScreenState extends State<HomeScreen>
                   ? Container(
                       height: 256,
                       child: ListView.builder(
-                        physics: const BouncingScrollPhysics(),
+                        physics: Helper().getPhysicsForPlatForm(),
                         scrollDirection: Axis.horizontal,
                         itemCount: 2,
                         itemBuilder: (BuildContext context, int index) {
@@ -240,7 +240,7 @@ class _HomeScreenState extends State<HomeScreen>
                   : Container(
                       height: 256,
                       child: ListView.builder(
-                        physics: const BouncingScrollPhysics(),
+                        physics: Helper().getPhysicsForPlatForm(),
                         scrollDirection: Axis.horizontal,
                         itemCount: 12,
                         itemBuilder: (BuildContext context, int index) {
@@ -295,7 +295,7 @@ class _HomeScreenState extends State<HomeScreen>
                   ? Container(
                       height: 256,
                       child: ListView.builder(
-                        physics: const BouncingScrollPhysics(),
+                        physics: Helper().getPhysicsForPlatForm(),
                         scrollDirection: Axis.horizontal,
                         itemCount: 2,
                         itemBuilder: (BuildContext context, int index) {
@@ -319,7 +319,7 @@ class _HomeScreenState extends State<HomeScreen>
                   : Container(
                       height: 256,
                       child: ListView.builder(
-                        physics: const BouncingScrollPhysics(),
+                        physics: Helper().getPhysicsForPlatForm(),
                         scrollDirection: Axis.horizontal,
                         itemCount: 12,
                         itemBuilder: (BuildContext context, int index) {
@@ -359,7 +359,7 @@ class _HomeScreenState extends State<HomeScreen>
                       height: 220,
                       width: double.infinity,
                       child: ListView.builder(
-                        physics: const BouncingScrollPhysics(),
+                        physics: Helper().getPhysicsForPlatForm(),
                         scrollDirection: Axis.horizontal,
                         itemCount: 2,
                         itemBuilder: (BuildContext context, int index) {
@@ -377,7 +377,7 @@ class _HomeScreenState extends State<HomeScreen>
                       height: 220,
                       width: double.infinity,
                       child: ListView.builder(
-                        physics: const BouncingScrollPhysics(),
+                        physics: Helper().getPhysicsForPlatForm(),
                         scrollDirection: Axis.horizontal,
                         itemCount: whatsNew.whatsNew.length,
                         itemBuilder: (BuildContext context, int index) {

@@ -93,7 +93,7 @@ class _SummearyScreenState extends State<SummearyScreen>
         builder: (context, ThemeNotifier notifier, child) {
       return Scaffold(
         body: CustomScrollView(
-          physics: const BouncingScrollPhysics(),
+          physics: Helper().getPhysicsForPlatForm(),
           slivers: <Widget>[
             SliverToBoxAdapter(
               child: FadeAnimation(
