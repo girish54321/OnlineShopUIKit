@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 
 class AppNetWorkIamge extends StatelessWidget {
-  final String imageUrl;
-  final int radius;
-  const AppNetWorkIamge({Key key, this.imageUrl, this.radius})
+  final String? imageUrl;
+  final int? radius;
+  const AppNetWorkIamge({Key? key, this.imageUrl, this.radius})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       imageUrl: imageUrl != null
-          ? imageUrl
+          ? imageUrl!
           : "https://target.scene7.com/is/image/Target//GUEST_6bdfe36e-d26d-4cee-918e-39cb9c377d44",
       imageBuilder: (context, imageProvider) => Container(
         decoration: BoxDecoration(

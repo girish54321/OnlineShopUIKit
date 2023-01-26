@@ -8,10 +8,10 @@ class StatusBarBuilder extends StatelessWidget {
   final bool useProviderTheme;
   final bool dark;
   const StatusBarBuilder(
-      {Key key,
-      @required this.child,
-      @required this.useProviderTheme,
-      @required this.dark})
+      {Key? key,
+      required this.child,
+      required this.useProviderTheme,
+      required this.dark})
       : super(key: key);
 
   @override

@@ -23,8 +23,8 @@ class ProductDetails extends StatefulWidget {
   final Product product;
 
   const ProductDetails({
-    Key key,
-    @required this.product,
+    Key? key,
+    required this.product,
   }) : super(key: key);
   @override
   _ProductDetailsState createState() => _ProductDetailsState();

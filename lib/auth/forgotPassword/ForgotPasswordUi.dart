@@ -14,18 +14,18 @@ class ForgotPasswordUi extends StatelessWidget {
 
   final TextEditingController emailController;
 
-  final Function changeVaildEmail;
+  final Function() changeVaildEmail;
 
   final GlobalKey<FormState> formKey;
-  final Function userPassword;
+  final Function() userPassword;
 
   const ForgotPasswordUi(
-      {Key key,
-      @required this.emailController,
-      @required this.validEmail,
-      @required this.changeVaildEmail,
-      @required this.formKey,
-      @required this.userPassword})
+      {Key? key,
+      required this.emailController,
+      required this.validEmail,
+      required this.changeVaildEmail,
+      required this.formKey,
+      required this.userPassword})
       : super(key: key);
 
   @override

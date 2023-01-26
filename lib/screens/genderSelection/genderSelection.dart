@@ -7,7 +7,7 @@ import 'package:onlineShopUIKit/screens/homeMain/homeMain.dart';
 import 'package:quiver/async.dart';
 
 class GenderSelection extends StatefulWidget {
-  GenderSelection({Key key, this.title}) : super(key: key);
+  GenderSelection({Key? key, this.title}) : super(key: key);
 
   final String title;
 
@@ -61,7 +61,7 @@ class _GenderSelectionState extends State<GenderSelection> {
                       FadeAnimation(
                           0.6,
                           AppTextH1(
-                            text: "Make Yor purchases as",
+                            text: "Make Your purchases as",
                             color: Colors.white,
                           )),
                       SizedBox(

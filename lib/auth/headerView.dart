@@ -6,7 +6,7 @@ import 'package:onlineShopUIKit/widget/buttons.dart';
 class HeaderView extends StatelessWidget {
   final String title;
 
-  const HeaderView({Key key, @required this.title}) : super(key: key);
+  const HeaderView({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

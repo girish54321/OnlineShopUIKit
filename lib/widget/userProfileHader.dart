@@ -12,10 +12,10 @@ class UserProfileHeader extends StatelessWidget {
   final Size size;
 
   const UserProfileHeader(
-      {Key key,
-      @required this.size,
-      @required this.userName,
-      @required this.imageUrl})
+      {Key? key,
+      required this.size,
+      required this.userName,
+      required this.imageUrl})
       : super(key: key);
   @override
   Widget build(BuildContext context) {

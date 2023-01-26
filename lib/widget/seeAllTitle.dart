@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class SeeAppTitle extends StatelessWidget {
   final String title;
-  final Function function;
-  const SeeAppTitle({Key key, @required this.title, @required this.function})
+  final Function() function;
+  const SeeAppTitle({Key? key, required this.title, required this.function})
       : super(key: key);
 
   @override

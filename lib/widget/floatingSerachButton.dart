@@ -44,10 +44,10 @@ class TwoFlothingSearchButton extends StatelessWidget {
 
 class FlothingSearchButton extends StatelessWidget {
   final String buttonText;
-  final Function function;
+  final Function() function;
 
   const FlothingSearchButton(
-      {Key key, @required this.buttonText, @required this.function})
+      {Key? key, required this.buttonText, required this.function})
       : super(key: key);
 
   @override

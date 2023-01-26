@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class UserSelecationFlow extends StatelessWidget {
   final String parent;
   final String childText;
-  final Widget rightButton;
+  final Widget? rightButton;
 
   const UserSelecationFlow(
-      {Key key,
-      @required this.parent,
-      @required this.childText,
+      {Key? key,
+      required this.parent,
+      required this.childText,
       this.rightButton})
       : super(key: key);
   @override
@@ -47,7 +47,7 @@ class UserSelecationFlow extends StatelessWidget {
                       : Text(""),
                 ],
               ),
-              rightButton != null ? rightButton : Text(""),
+              rightButton ?? Text(""),
             ],
           ),
         ),

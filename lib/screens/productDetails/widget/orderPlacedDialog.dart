@@ -7,7 +7,7 @@ import 'package:onlineShopUIKit/widget/userProfilePic.dart';
 import 'package:lottie/lottie.dart';
 
 class OrderPlacedDialog extends StatelessWidget {
-  const OrderPlacedDialog({Key key}) : super(key: key);
+  const OrderPlacedDialog({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

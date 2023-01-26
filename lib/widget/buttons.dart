@@ -6,9 +6,13 @@ import 'package:onlineShopUIKit/animasions/leftToRight.dart';
 class AppButton extends StatelessWidget {
   final Widget child;
   final Color color;
-  final Function function;
+  final Function() function;
 
-  const AppButton({Key key, this.color, this.child, @required this.function})
+  const AppButton(
+      {Key? key,
+      required this.color,
+      required this.child,
+      required this.function})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -31,10 +35,13 @@ class AppButton extends StatelessWidget {
 class GenderButtons extends StatelessWidget {
   final Widget child;
   final Color color;
-  final Function function;
+  final Function() function;
 
   const GenderButtons(
-      {Key key, this.color, this.child, @required this.function})
+      {Key? key,
+      required this.color,
+      required this.child,
+      required this.function})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -56,10 +63,10 @@ class GenderButtons extends StatelessWidget {
 
 class BlackButton extends StatelessWidget {
   final String buttonText;
-  final Function function;
+  final Function() function;
 
   const BlackButton(
-      {Key key, @required this.buttonText, @required this.function})
+      {Key? key, required this.buttonText, required this.function})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -87,7 +94,7 @@ class BlackButton extends StatelessWidget {
 class FaceBookButton extends StatelessWidget {
   final String buttonText;
 
-  const FaceBookButton({Key key, @required this.buttonText}) : super(key: key);
+  const FaceBookButton({Key? key, required this.buttonText}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return RaisedButton(
@@ -125,13 +132,14 @@ class FaceBookButton extends StatelessWidget {
 
 class GoBackButton extends StatelessWidget {
   final Color color;
-  final Function function;
+  final Function() function;
 
-  const GoBackButton({Key key, this.color, @required this.function})
+  const GoBackButton({Key? key, required this.color, required this.function})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     return LeftToRight(
+      delay: 500,
       child: Container(
         margin: EdgeInsets.only(right: 10, top: 42),
         height: 33,
@@ -156,10 +164,10 @@ class GoBackButton extends StatelessWidget {
 
 class GoForWordButton extends StatelessWidget {
   final String buttonText;
-  final Function function;
+  final Function() function;
 
   const GoForWordButton(
-      {Key key, @required this.buttonText, @required this.function})
+      {Key? key, required this.buttonText, required this.function})
       : super(key: key);
 
   @override

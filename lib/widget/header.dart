@@ -4,20 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:onlineShopUIKit/helper/helper.dart';
 
 class AppHearder extends StatelessWidget {
-  final List<Widget> rightAction;
+  final List<Widget>? rightAction;
   final Color leftButtonColor;
-  final String buttonText;
+  final String? buttonText;
   final bool leftButton;
   final Widget dropDwon;
   final bool hideBackButton;
   const AppHearder(
-      {Key key,
+      {Key? key,
       this.rightAction,
       this.buttonText,
-      this.leftButtonColor,
-      @required this.leftButton,
-      this.dropDwon,
-      @required this.hideBackButton})
+      required this.leftButtonColor,
+      required this.leftButton,
+      required this.dropDwon,
+      required this.hideBackButton})
       : super(key: key);
 
   @override
@@ -53,7 +53,7 @@ class AppHearder extends StatelessWidget {
                                         ? Colors.black
                                         : leftButtonColor),
                                 Text(
-                                  buttonText.toUpperCase(),
+                                  buttonText ?? "".toUpperCase(),
                                   style: TextStyle(
                                       fontSize: 18,
                                       color: leftButtonColor == null
@@ -69,13 +69,13 @@ class AppHearder extends StatelessWidget {
                                 leftButtonColor: leftButtonColor,
                               )
                 : Text(""),
-            Container(
-              child: Row(children: [
-                ...rightAction.asMap().entries.map((MapEntry map) {
-                  return rightAction[map.key];
-                }).toList(),
-              ]),
-            )
+            // Container(
+            //   child: Row(children: [
+            //     ...rightAction!.asMap().entries.map((MapEntry map) {
+            //       return rightAction[map.key];
+            //     }).toList(),
+            //   ]),
+            // )
           ],
         ),
         // Divider()
@@ -87,7 +87,7 @@ class AppHearder extends StatelessWidget {
 class BackIconButton extends StatelessWidget {
   final Color leftButtonColor;
 
-  const BackIconButton({Key key, @required this.leftButtonColor})
+  const BackIconButton({Key? key, required this.leftButtonColor})
       : super(key: key);
   @override
   Widget build(BuildContext context) {

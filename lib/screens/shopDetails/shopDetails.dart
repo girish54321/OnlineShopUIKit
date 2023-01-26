@@ -23,8 +23,7 @@ class Days {
 class ShopDetailsScreen extends StatefulWidget {
   final String heroTag;
   final Shop shop;
-  const ShopDetailsScreen(
-      {Key key, @required this.heroTag, @required this.shop})
+  const ShopDetailsScreen({Key? key, required this.heroTag, required this.shop})
       : super(key: key);
 
   @override

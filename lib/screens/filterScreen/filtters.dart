@@ -7,13 +7,13 @@ import 'package:onlineShopUIKit/screens/filterScreen/filterScreen.dart';
 class RengPicker extends StatelessWidget {
   final String title;
   final RangeValues rangeValues;
-  final Function function;
+  final Function() function;
 
   const RengPicker(
-      {Key key,
-      @required this.rangeValues,
-      @required this.function,
-      @required this.title})
+      {Key? key,
+      required this.rangeValues,
+      required this.function,
+      required this.title})
       : super(key: key);
 
   @override
@@ -50,15 +50,15 @@ class ColorsFiltter extends StatelessWidget {
   final String title;
   final List<ColorsCalss> colorsList;
   final List<int> selectedcolorIds;
-  final Function selecteColorId;
+  final Function() selecteColorId;
   final bool smallView;
   const ColorsFiltter(
-      {Key key,
-      @required this.colorsList,
-      @required this.selectedcolorIds,
+      {Key? key,
+      required this.colorsList,
+      required this.selectedcolorIds,
       this.selecteColorId,
-      @required this.title,
-      @required this.smallView})
+      required this.title,
+      required this.smallView})
       : super(key: key);
 
   @override
@@ -133,16 +133,16 @@ class ColorsFiltter extends StatelessWidget {
 
 class SizeFlitter extends StatelessWidget {
   final String title;
-  final Function selecteSize;
+  final Function() selecteSize;
   final List<SizeModale> sizeList;
   final List<int> selectedSizeList;
 
   const SizeFlitter(
-      {Key key,
-      @required this.sizeList,
-      @required this.title,
-      @required this.selecteSize,
-      @required this.selectedSizeList})
+      {Key? key,
+      required this.sizeList,
+      required this.title,
+      required this.selecteSize,
+      required this.selectedSizeList})
       : super(key: key);
   @override
   Widget build(BuildContext context) {

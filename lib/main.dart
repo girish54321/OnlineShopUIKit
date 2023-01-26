@@ -36,8 +36,8 @@ class MyApp extends StatelessWidget {
                   // locale: DevicePreview.locale(context), // DevicePreview
                   // builder: DevicePreview.appBuilder, // DevicePreview
                   title: 'OnlineShopUiKit',
-                  // home: WelcomeScreen());
-                  home: HomeMain());
+                  home: WelcomeScreen());
+              // home: HomeMain());
             },
           );
         },

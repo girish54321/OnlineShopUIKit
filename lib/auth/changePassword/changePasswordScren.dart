@@ -45,7 +45,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   }
 
   void loginUser() {
-    if (_formKey.currentState.validate()) {
+    if (_formKey.currentState!.validate()) {
     } else {
       // Helper().vibratPhone();
       Helper().goToPage(context, UserLogedIn());

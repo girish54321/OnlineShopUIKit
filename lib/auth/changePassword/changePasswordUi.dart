@@ -13,30 +13,30 @@ class ChangePasswordUi extends StatelessWidget {
   final TextEditingController emailController;
   final TextEditingController passwordController;
   final TextEditingController nameController;
-  final Function changeVaildEmail;
-  final Function changevalidPassword;
-  final Function changeRemamberme;
-  final Function chagneValidName;
+  final Function() changeVaildEmail;
+  final Function() changevalidPassword;
+  final Function() changeRemamberme;
+  final Function() chagneValidName;
   final bool validName;
   final bool remamberme;
   final GlobalKey<FormState> formKey;
-  final Function loginUser;
+  final Function() loginUser;
 
   const ChangePasswordUi(
-      {Key key,
-      @required this.emailController,
-      @required this.passwordController,
-      @required this.validEmail,
-      @required this.validPassword,
-      @required this.changeVaildEmail,
-      @required this.changevalidPassword,
-      @required this.changeRemamberme,
-      @required this.remamberme,
-      @required this.formKey,
-      @required this.loginUser,
-      @required this.nameController,
-      @required this.chagneValidName,
-      @required this.validName})
+      {Key? key,
+      required this.emailController,
+      required this.passwordController,
+      required this.validEmail,
+      required this.validPassword,
+      required this.changeVaildEmail,
+      required this.changevalidPassword,
+      required this.changeRemamberme,
+      required this.remamberme,
+      required this.formKey,
+      required this.loginUser,
+      required this.nameController,
+      required this.chagneValidName,
+      required this.validName})
       : super(key: key);
 
   @override

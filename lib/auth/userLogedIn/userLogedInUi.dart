@@ -9,7 +9,7 @@ import 'package:onlineShopUIKit/widget/userProfilePic.dart';
 
 class UserLogedInUi extends StatelessWidget {
   const UserLogedInUi({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

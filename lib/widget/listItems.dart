@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:onlineShopUIKit/animasions/showUp.dart';
 import 'package:onlineShopUIKit/widget/appNetworkImage.dart';
 import 'package:onlineShopUIKit/widget/appText.dart';
-import 'package:floating_action_row/floating_action_row.dart';
+// import 'package:floating_action_row/floating_action_row.dart';
 import 'package:onlineShopUIKit/widget/shopStatus.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
 
@@ -13,7 +13,7 @@ class CategoryBigItem extends StatelessWidget {
   final String text;
   final String imageUrl;
 
-  const CategoryBigItem({Key key, @required this.text, @required this.imageUrl})
+  const CategoryBigItem({Key? key, required this.text, required this.imageUrl})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -50,13 +50,13 @@ class CategoryListItem extends StatelessWidget {
   final String imageUrl;
   final String text;
 
-  final Function function;
+  final Function() function;
 
   const CategoryListItem(
-      {Key key,
-      @required this.function,
-      @required this.imageUrl,
-      @required this.text})
+      {Key? key,
+      required this.function,
+      required this.imageUrl,
+      required this.text})
       : super(key: key);
 
   @override
@@ -105,13 +105,13 @@ class CategoryListItem extends StatelessWidget {
 class SubCategoryListItem extends StatelessWidget {
   final String imageUrl;
   final String text;
-  final Function function;
+  final Function() function;
 
   const SubCategoryListItem(
-      {Key key,
-      @required this.function,
-      @required this.imageUrl,
-      @required this.text})
+      {Key? key,
+      required this.function,
+      required this.imageUrl,
+      required this.text})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -157,14 +157,14 @@ class ProductItem extends StatelessWidget {
   final String name;
   final String price;
   final String imageUrl;
-  final Function function;
+  final Function() function;
 
   const ProductItem(
-      {Key key,
-      @required this.function,
-      @required this.name,
-      @required this.price,
-      @required this.imageUrl})
+      {Key? key,
+      required this.function,
+      required this.name,
+      required this.price,
+      required this.imageUrl})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -205,16 +205,16 @@ class ProductItem extends StatelessWidget {
 }
 
 class ProductGridItem extends StatelessWidget {
-  final Function function;
+  final Function() function;
   final String text;
   final String imageUrl;
   final String price;
   const ProductGridItem(
-      {Key key,
-      @required this.function,
-      @required this.text,
-      @required this.imageUrl,
-      @required this.price})
+      {Key? key,
+      required this.function,
+      required this.text,
+      required this.imageUrl,
+      required this.price})
       : super(key: key);
 
   @override
@@ -261,15 +261,15 @@ class ProductGridItem extends StatelessWidget {
 class ListItemsWithDvider extends StatelessWidget {
   final String text;
   final String rightText;
-  final EdgeInsetsGeometry padding;
+  final EdgeInsetsGeometry? padding;
   final Widget rightIcon;
 
   const ListItemsWithDvider(
-      {Key key,
-      @required this.text,
+      {Key? key,
+      required this.text,
       this.padding,
-      @required this.rightText,
-      @required this.rightIcon})
+      required this.rightText,
+      required this.rightIcon})
       : super(key: key);
 
   @override
@@ -278,9 +278,8 @@ class ListItemsWithDvider extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: padding != null
-              ? padding
-              : const EdgeInsets.symmetric(vertical: 11),
+          padding:
+              padding != null ? padding! : EdgeInsets.symmetric(vertical: 11),
           child: rightText == null
               ? Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -321,15 +320,15 @@ class CartItem extends StatelessWidget {
   final String title;
   final String imageUrl;
   final String price;
-  final Function function;
+  final Function() function;
 
   const CartItem(
-      {Key key,
-      @required this.size,
-      @required this.title,
-      @required this.imageUrl,
-      @required this.price,
-      @required this.function})
+      {Key? key,
+      required this.size,
+      required this.title,
+      required this.imageUrl,
+      required this.price,
+      required this.function})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -389,42 +388,42 @@ class CartItem extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               text: price,
                             ),
-                            FloatingActionRow(
-                              elevation: 0,
-                              height: 36,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(24)),
-                              color: Color(0xffF0F0F0),
-                              children: <Widget>[
-                                FloatingActionRowButton(
-                                    icon: Icon(
-                                      Icons.remove,
-                                      color: Colors.black,
-                                    ),
-                                    onTap: () {}),
-                                FloatingActionRowDivider(),
-                                ShowUp(
-                                  delay: 400,
-                                  child: Container(
-                                    width: 18,
-                                    child: Text(
-                                      "1",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                FloatingActionRowDivider(),
-                                FloatingActionRowButton(
-                                    icon: Icon(
-                                      Icons.add,
-                                      color: Colors.black,
-                                    ),
-                                    onTap: () {}),
-                              ],
-                            )
+                            // FloatingActionRow(
+                            //   elevation: 0,
+                            //   height: 36,
+                            //   borderRadius:
+                            //       BorderRadius.all(Radius.circular(24)),
+                            //   color: Color(0xffF0F0F0),
+                            //   children: <Widget>[
+                            //     FloatingActionRowButton(
+                            //         icon: Icon(
+                            //           Icons.remove,
+                            //           color: Colors.black,
+                            //         ),
+                            //         onTap: () {}),
+                            //     FloatingActionRowDivider(),
+                            //     ShowUp(
+                            //       delay: 400,
+                            //       child: Container(
+                            //         width: 18,
+                            //         child: Text(
+                            //           "1",
+                            //           textAlign: TextAlign.center,
+                            //           style: TextStyle(
+                            //             fontSize: 18,
+                            //           ),
+                            //         ),
+                            //       ),
+                            //     ),
+                            //     FloatingActionRowDivider(),
+                            //     FloatingActionRowButton(
+                            //         icon: Icon(
+                            //           Icons.add,
+                            //           color: Colors.black,
+                            //         ),
+                            //         onTap: () {}),
+                            //   ],
+                            // )
                           ],
                         ),
                       )
@@ -510,15 +509,15 @@ class StoreListItem extends StatelessWidget {
   final String imageUrl;
   final bool isOpen;
   final Size size;
-  final Function function;
+  final Function() function;
 
   const StoreListItem(
-      {Key key,
-      @required this.size,
-      @required this.function,
-      @required this.shopName,
-      @required this.isOpen,
-      @required this.imageUrl})
+      {Key? key,
+      required this.size,
+      required this.function,
+      required this.shopName,
+      required this.isOpen,
+      required this.imageUrl})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -558,9 +557,9 @@ class WorkKingDaysListItem extends StatelessWidget {
   final String rightText;
 
   const WorkKingDaysListItem({
-    Key key,
-    @required this.text,
-    @required this.rightText,
+    Key? key,
+    required this.text,
+    required this.rightText,
   }) : super(key: key);
 
   @override
@@ -590,10 +589,10 @@ class WhatsNewVIew extends StatelessWidget {
   final String imageUrl;
 
   const WhatsNewVIew(
-      {Key key,
-      @required this.title,
-      @required this.subTitle,
-      @required this.imageUrl})
+      {Key? key,
+      required this.title,
+      required this.subTitle,
+      required this.imageUrl})
       : super(key: key);
   @override
   Widget build(BuildContext context) {

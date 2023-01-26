@@ -6,7 +6,7 @@ import 'package:onlineShopUIKit/widget/appNetworkImage.dart';
 
 class ProductImageView extends StatefulWidget {
   final List<String> images;
-  ProductImageView({Key key, @required this.images}) : super(key: key);
+  ProductImageView({Key? key, required this.images}) : super(key: key);
 
   @override
   _ProductImageViewState createState() => _ProductImageViewState();

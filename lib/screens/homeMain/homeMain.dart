@@ -1,4 +1,5 @@
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+// import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:onlineShopUIKit/helper/theme.dart';
@@ -77,22 +78,22 @@ class _HomeMainState extends State<HomeMain> {
                 currentIndex: pageIndex,
                 onTap: onTap,
                 activeColor: Color(0xFFea9f5a),
-                inactiveColor: notifier.darkTheme ? Colors.white : Colors.black,
+                // inactiveColor: notifier.darkTheme ? Colors.white : Colors.black,
                 items: [
                   BottomNavigationBarItem(
-                    icon: Icon(FluentIcons.home_20_filled),
+                    icon: Icon(FluentIcons.home),
                   ),
                   BottomNavigationBarItem(
-                    icon: Icon(FluentIcons.location_20_filled),
+                    icon: Icon(FluentIcons.home),
                   ),
                   BottomNavigationBarItem(
-                    icon: Icon(FluentIcons.person_20_filled),
+                    icon: Icon(FluentIcons.home),
                   ),
                   BottomNavigationBarItem(
-                    icon: Icon(FluentIcons.cart_20_filled),
+                    icon: Icon(FluentIcons.home),
                   ),
                   BottomNavigationBarItem(
-                    icon: Icon(FluentIcons.more_20_filled),
+                    icon: Icon(FluentIcons.home),
                   ),
                 ]));
       },

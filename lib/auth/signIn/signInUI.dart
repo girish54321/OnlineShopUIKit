@@ -14,25 +14,25 @@ class SignInUi extends StatelessWidget {
   final bool validPassword;
   final TextEditingController emailController;
   final TextEditingController passwordController;
-  final Function changeVaildEmail;
-  final Function changevalidPassword;
-  final Function changeRemamberme;
+  final Function() changeVaildEmail;
+  final Function() changevalidPassword;
+  final Function() changeRemamberme;
   final bool remamberme;
   final GlobalKey<FormState> formKey;
-  final Function loginUser;
+  final Function() loginUser;
 
   const SignInUi(
-      {Key key,
-      @required this.emailController,
-      @required this.passwordController,
-      @required this.validEmail,
-      @required this.validPassword,
-      @required this.changeVaildEmail,
-      @required this.changevalidPassword,
-      @required this.changeRemamberme,
-      @required this.remamberme,
-      @required this.formKey,
-      @required this.loginUser})
+      {Key? key,
+      required this.emailController,
+      required this.passwordController,
+      required this.validEmail,
+      required this.validPassword,
+      required this.changeVaildEmail,
+      required this.changevalidPassword,
+      required this.changeRemamberme,
+      required this.remamberme,
+      required this.formKey,
+      required this.loginUser})
       : super(key: key);
 
   @override

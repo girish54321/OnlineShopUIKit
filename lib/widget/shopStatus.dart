@@ -7,7 +7,7 @@ import 'package:page_transition/page_transition.dart';
 class ShopStatus extends StatelessWidget {
   final bool shopOpen;
 
-  const ShopStatus({Key key, @required this.shopOpen}) : super(key: key);
+  const ShopStatus({Key? key, required this.shopOpen}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -43,7 +43,7 @@ class ShopImage extends StatelessWidget {
   final Size size;
   final List<String> images;
 
-  const ShopImage({Key key, @required this.size, @required this.images})
+  const ShopImage({Key? key, required this.size, required this.images})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
