@@ -20,3 +20,14 @@ OnlineshopUiKit is intended to serve as a starting point for developers building
 |<img width="1604" src="https://github.com/girish54321/OnlineShopUIKit/blob/main/images/home_dark.jpg"> Home Screen Dark|
 
 [Design Credit](https://www.behance.net/gallery/85593251/Blume-Shopping-app-UI-Kit).
+
+React, React native, Redux
+
+If you find my work useful, please consider supporting me by buying me a coffee!
+
+Your support helps me continue to develop and maintain this project.
+
+Thank you!
+
+<a href="https://www.buymeacoffee.com/girishparaa" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+
